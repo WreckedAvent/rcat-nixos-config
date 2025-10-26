@@ -88,7 +88,15 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
+  # services.xserver.libinput.enable = true
+
+  fonts.packages = with pkgs; [
+    nerd-fonts.fira-code
+    nerd-fonts.caskaydia-cove
+    nerd-fonts.inconsolata
+    nerd-fonts.hasklug
+    nerd-fonts.droid-sans-mono
+  ];
 
 
   # Allow unfree packages
