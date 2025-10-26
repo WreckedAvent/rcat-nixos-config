@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 {
   imports =
@@ -94,11 +94,6 @@
   # Allow unfree packages
   nixpkgs.config = {
     allowUnfree = true;
-    packageOverrides = pkgs: {
-      unstable = import <nixos-unstable> {
-        config = config.nixpkgs.config;
-      };
-    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -111,7 +106,7 @@
       thunderbird
       helix
       discord
-      zed-editor
+      pkgs-unstable.zed-editor
     ];
   };
 
