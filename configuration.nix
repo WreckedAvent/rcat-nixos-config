@@ -137,12 +137,28 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    # useful global utils
+    vim
     wget
     bat
-    zsh
+    file
+    which
+    tree
+    eza
+    nnn
+    
+    # system interrogation
     fastfetch
-    universal-ctags
+    psmisc
+    ethtool
+    dnsutils
+    pciutils
+    usbutils
+
+    # monitoring
+    btop
+    iotop
+    iftop
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
