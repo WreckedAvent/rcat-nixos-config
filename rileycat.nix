@@ -1,0 +1,57 @@
+{ config, pkgs, ... }:
+
+{
+  home.username = "rileycat";
+  home.homeDirectory = "/home/rileycat";
+
+  # for 4k monitors
+  xresources.properties = {
+    "Xcursor.size" = 16;
+    "Xft.dpi" = 172;
+  };
+
+  home.packages = with pkgs; [
+    ripgrep
+    jq
+    fzf
+  ];
+
+  programs.git = {
+    enable = true;
+    userName = "rileycat";
+    userEmail = "deliciousfaith@live.net";
+
+    difftastic = {
+      enable = true;
+      display = "side-by-side";
+    };
+  };
+
+  programs.starship = {
+    enable = true;
+  };
+
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      env.TERM = "xterm-256color";
+      font = {
+        size = 12;
+      };
+      scrolling.multiplier = 5;
+      selection.save_to_clipboard = true;
+    };
+  };
+  
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestion.enable = true;
+    syntaxHighlighting.enable = true;
+  };
+
+  systemd.user.startServices = "sd-switch";
+
+  # minimum compatible home version
+  home.stateVersion = "25.05";
+}

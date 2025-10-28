@@ -104,11 +104,13 @@
     allowUnfree = true;
   };
 
+  programs.zsh.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.rileycat = {
     isNormalUser = true;
     description = "riley k";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.zsh;
     packages = with pkgs; [
       kdePackages.kate
       thunderbird
@@ -127,7 +129,6 @@
     localNetworkGameTransfers.openFirewall = true;
   };
 
-  programs.zsh.enable = true;
   programs.git = {
     enable = true;
     prompt.enable = true;
