@@ -104,6 +104,8 @@
     allowUnfree = true;
   };
 
+  catppuccin.enable = true;
+
   programs.zsh.enable = true;
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.rileycat = {
@@ -113,15 +115,11 @@
     shell = pkgs.zsh;
     packages = with pkgs; [
       kdePackages.kate
-      thunderbird
-      helix
       discord
       pkgs-unstable.zed-editor
     ];
   };
 
-  # Install firefox.
-  programs.firefox.enable = true;
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true;
@@ -141,7 +139,6 @@
     # useful global utils
     vim
     wget
-    bat
     file
     which
     tree
@@ -157,7 +154,6 @@
     usbutils
 
     # monitoring
-    btop
     iotop
     iftop
   ];

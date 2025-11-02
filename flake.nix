@@ -8,9 +8,10 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    catppuccin.url = "github:catppuccin/nix/release-25.05";
   };
 
-  outputs = { self, nixpkgs, unstable, home-manager }@inputs:
+  outputs = { self, nixpkgs, unstable, home-manager, catppuccin }@inputs:
   let
     system = "x86_64-linux";
     pkgs-unstable = unstable.legacyPackages.${system};
@@ -21,11 +22,16 @@
       modules = [
         ./configuration.nix
 
+        catppuccin.nixosModules.catppuccin
+
         home-manager.nixosModules.home-manager
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.users.rileycat = import ./rileycat.nix;
+          home-manager.users.rileycat.imports = [
+            ./rileycat.nix
+            catppuccin.homeModules.catppuccin
+          ];
         }
       ];
     };

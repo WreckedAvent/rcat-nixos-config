@@ -13,6 +13,10 @@
   home.packages = with pkgs; [
     ripgrep
     jq
+    bat
+    btop
+    fzf
+    thunderbird
     fzf
   ];
 
@@ -29,6 +33,14 @@
 
   programs.starship = {
     enable = true;
+  };
+
+  programs.firefox = {
+    enable = true;
+  };
+  catppuccin.firefox = {
+    enable = true;
+    force = true;
   };
 
   programs.alacritty = {
@@ -49,6 +61,16 @@
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
   };
+
+  programs.helix = {
+    enable = true;
+    defaultEditor = true;
+    settings = {
+      editor.line-number = "relative";
+    };
+  };
+
+  catppuccin.enable = true;
 
   systemd.user.startServices = "sd-switch";
 
