@@ -18,6 +18,8 @@
     fzf
     thunderbird
     fzf
+
+    kdePackages.qtstyleplugin-kvantum
   ];
 
   programs.git = {
