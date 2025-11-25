@@ -10,6 +10,8 @@
       ./hardware-configuration.nix
     ];
 
+  nix.package = pkgs.lixPackageSets.stable.lix;
+
   # Bootloader.
   # boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -115,8 +117,11 @@
     shell = pkgs.zsh;
     packages = with pkgs; [
       kdePackages.kate
+      kdePackages.kcalc
       discord
       pkgs-unstable.zed-editor
+      pkgs-unstable.ladybird
+      usbimager
     ];
   };
 

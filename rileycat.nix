@@ -20,6 +20,7 @@
     fzf
 
     kdePackages.qtstyleplugin-kvantum
+    kdePackages.plasma-browser-integration
   ];
 
   programs.git = {
