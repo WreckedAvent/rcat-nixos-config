@@ -101,9 +101,6 @@
       kdePackages.kcalc
       kdePackages.yakuake
 
-      # social
-      discord
-
       # utils
       usbimager
       easyeffects
