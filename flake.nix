@@ -24,7 +24,7 @@
     systems = [ "x86_64-linux" "aarch64-linux" ];
 
     imports = [
-      ./silverwolf.nix
+      ./hosts/silverwolf
     ];
   };
 }

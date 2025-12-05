@@ -3,7 +3,8 @@
 {
   flake.nixosConfigurations.silverwolf = with inputs; nixpkgs.lib.nixosSystem {
     modules = [
-      ./configuration.nix
+      ./conf.nix
+      ./hardware.nix
 
       catppuccin.nixosModules.catppuccin
       nixos-hardware.nixosModules.framework-amd-ai-300-series
@@ -17,7 +18,7 @@
         # home-manager.backupFileExtension = "hm-backup";
         # 
         home-manager.users.rileycat.imports = [
-          ./rileycat.nix
+          ../../rileycat.nix
           catppuccin.homeModules.catppuccin
         ];
       }
