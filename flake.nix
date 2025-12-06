@@ -24,6 +24,13 @@
     systems = [ "x86_64-linux" "aarch64-linux" ];
 
     imports = [
+      # allow merging of hm configurations per flake part
+      inputs.home-manager.flakeModules.home-manager
+
+      # users
+      ./users/rileycat
+  
+      # hosts
       ./hosts/silverwolf
     ];
   };

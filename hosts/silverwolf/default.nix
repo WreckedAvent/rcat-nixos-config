@@ -1,4 +1,4 @@
-{ withSystem, inputs, ... }:
+{ self, inputs, ... }:
 
 {
   flake.nixosConfigurations.silverwolf = with inputs; nixpkgs.lib.nixosSystem {
@@ -17,8 +17,8 @@
         # enable with weird hm errors, grep for this extension to see what the problem is
         # home-manager.backupFileExtension = "hm-backup";
         # 
-        home-manager.users.rileycat.imports = [
-          ../../rileycat.nix
+        home-manager.users.rileycat.imports = with self.modules.homeManager; [
+          users-rileycat
           catppuccin.homeModules.catppuccin
         ];
       }
