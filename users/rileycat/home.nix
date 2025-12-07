@@ -5,15 +5,24 @@
   home.homeDirectory = "/home/rileycat";
   
   home.packages = with pkgs; [
-    ripgrep
-    jq
+    # general utils
     bat
     btop
-    thunderbird
+    eza
     fzf
+    jq
+    nnn
+    ripgrep
 
-    kdePackages.qtstyleplugin-kvantum
-    kdePackages.plasma-browser-integration
+    # gui utils
+    usbimager
+    easyeffects
+
+    # language
+    aspell
+    aspellDicts.en
+    hunspell
+    hunspellDicts.en_US
   ];
 
   programs.vesktop.enable = true;
@@ -35,9 +44,15 @@
     enable = true;
   };
 
+  # needs a profile
+  # programs.thunderbird = {
+  #   enable = true;
+  # };
+
   programs.firefox = {
     enable = true;
   };
+  
   catppuccin.firefox = {
     enable = true;
     force = true;
