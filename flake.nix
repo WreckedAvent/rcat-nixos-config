@@ -32,6 +32,7 @@
   
       # hosts
       ./hosts/silverwolf
+      ./hosts/blackjack
     ];
   };
 }
