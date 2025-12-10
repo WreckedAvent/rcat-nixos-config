@@ -34,6 +34,11 @@
     extraGroups = ["networkmanager" "wheel"];
   };
 
+  gayming = {
+    steam = true;
+    nvidia = true;
+  };
+
   networking.hostName = "blackjack"; # Define your hostname.
   networking.networkmanager.enable = true;
   services.openssh.enable = true;
