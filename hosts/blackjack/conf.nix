@@ -32,6 +32,11 @@
     isNormalUser = true;
     description = "riley k";
     extraGroups = ["networkmanager" "wheel"];
+    shell = pkgs.zsh;
+  };
+
+  programs = {
+    zsh.enable = true;
   };
 
   gayming = {
