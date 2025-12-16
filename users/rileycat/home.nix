@@ -18,7 +18,6 @@
 
     # nix
     nps
-    nix-index
 
     # gui utils
     usbimager
@@ -52,6 +51,11 @@
 
   programs.starship = {
     enable = true;
+  };
+
+  programs.nix-index = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   # needs a profile
