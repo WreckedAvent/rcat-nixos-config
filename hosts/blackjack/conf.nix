@@ -5,7 +5,7 @@
 }: {
   imports = [
     ../audio.nix
-    ../fonts.nix
+    ../coding.nix
     ../gaming.nix
     ../i18n.nix
     ../kde.nix
@@ -39,10 +39,14 @@
     zsh.enable = true;
   };
 
-  gayming = {
+  rcat.gayming = {
     steam = true;
     nvidia = true;
     gamescope = true;
+  };
+
+  rcat.coding = {
+    lsp = true;
   };
 
   networking.hostName = "blackjack"; # Define your hostname.

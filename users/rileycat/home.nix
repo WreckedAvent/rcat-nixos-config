@@ -33,13 +33,6 @@
     # productivity
     libreoffice-qt-fresh
     nil
-    rust-analyzer
-    zls
-    ty
-    marksman
-    typescript-language-server
-    gopls
-    omnisharp-roslyn
   ];
 
   programs.vesktop.enable = true;
