@@ -16,6 +16,13 @@ in {
   };
 
   config = {
+    assertions = [
+      {
+        assertion = !(cfg.amd && cfg.nvidia) && (cfg.amd || cfg.nvidia);
+        message = "only one of amd or nvidia can be supported when importing gaming module";
+      }
+    ];
+
     programs.steam = mkIf cfg.steam {
       enable = true;
       remotePlay.openFirewall = true;

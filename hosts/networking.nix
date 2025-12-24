@@ -14,6 +14,13 @@ in {
   };
 
   config = {
+    assertions = [
+      {
+        assertion = opts.hostName != null;
+        message = "rcat.networking.hostname is required when importing networking module";
+      }
+    ];
+
     networking.hostName = opts.hostName;
     networking.networkmanager.enable = true;
     services.openssh.enable = true;
