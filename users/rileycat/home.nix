@@ -1,10 +1,24 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
+  imports = [
+    ../coding.nix
+    ../nix-utils.nix
+    ../productivity.nix
+    ../terminal.nix
+  ];
+
   home.username = "rileycat";
   home.homeDirectory = "/home/rileycat";
+
+  rcat = {
+    coding.helix = true;
+
+    productivity.libreOffice = true;
+
+    terminal = {
+      zsh = true;
+      alacritty = true;
+    };
+  };
 
   home.packages = with pkgs; [
     # general utils
@@ -16,22 +30,9 @@
     nnn
     ripgrep
 
-    # nix
-    nps
-
     # gui utils
     usbimager
     easyeffects
-
-    # language
-    aspell
-    aspellDicts.en
-    hunspell
-    hunspellDicts.en_US
-
-    # productivity
-    libreoffice-qt-fresh
-    nil
   ];
 
   programs.vesktop.enable = true;
@@ -45,17 +46,9 @@
   };
 
   programs.difftastic = {
+    enable = true;
     git.enable = true;
     options.display = "side-by-side";
-  };
-
-  programs.starship = {
-    enable = true;
-  };
-
-  programs.nix-index = {
-    enable = true;
-    enableZshIntegration = true;
   };
 
   # needs a profile
@@ -65,64 +58,6 @@
 
   programs.firefox = {
     enable = true;
-  };
-
-  catppuccin.firefox = {
-    enable = true;
-    force = true;
-  };
-
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      env.TERM = "xterm-256color";
-      font = {
-        size = 12;
-      };
-      scrolling.multiplier = 5;
-      selection.save_to_clipboard = true;
-    };
-  };
-
-  programs.zsh = {
-    enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-    plugins = [
-      {
-        name = "vi-mode";
-        src = pkgs.zsh-vi-mode;
-        file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
-      }
-    ];
-  };
-
-  programs.helix = {
-    enable = true;
-    defaultEditor = true;
-    settings = {
-      editor = {
-        line-number = "relative";
-        end-of-line-diagnostics = "hint";
-        rulers = [80 120];
-
-        indent-guides = {
-          character = "⸽";
-          render = true;
-        };
-
-        inline-diagnostics = {
-          cursor-line = "error"; # Show inline diagnostics when the cursor is on the line
-          other-lines = "disable"; # Don't expand diagnostics unless the cursor is on the line
-        };
-
-        lsp = {
-          display-messages = true;
-          display-inlay-hints = true;
-        };
-      };
-    };
   };
 
   catppuccin.enable = true;
