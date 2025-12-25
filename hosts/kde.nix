@@ -2,9 +2,7 @@
   pkgs,
   lib,
   ...
-}: let
-  mkAfterKde = lib.mkOrder 2000;
-in {
+}: {
   # x11 is enabled for now
   services.xserver.enable = lib.mkDefault true;
   services.xserver.xkb = {
@@ -20,17 +18,16 @@ in {
   services.desktopManager.plasma6.enable = true;
 
   environment.systemPackages = with pkgs;
-  with kdePackages;
-    mkAfterKde [
-      # 1st party
-      kate
-      plasma-systemmonitor
-      kcalc
-      kdenlive
+  with kdePackages; [
+    # 1st party
+    kate
+    plasma-systemmonitor
+    kcalc
+    kdenlive
 
-      # 3rd party
-      qtstyleplugin-kvantum
-      plasma-browser-integration
-      catppuccin-sddm
-    ];
+    # 3rd party
+    qtstyleplugin-kvantum
+    plasma-browser-integration
+    catppuccin-sddm
+  ];
 }
