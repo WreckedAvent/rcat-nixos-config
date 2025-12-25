@@ -17,18 +17,9 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            extraSpecialArgs = {inherit inputs;};
             backupFileExtension = "hm-backup"; # enable for conflict resolution
 
-            users.rileycat.imports = [
-              self.homeModules.users-rileycat
-
-              catppuccin.homeModules.catppuccin
-
-              self.homeModules.unstable-packages
-
-              nix-index-database.homeModules.default
-            ];
+            users."rileycat".imports = self.homeImports."rileycat";
           };
         }
       ];
