@@ -11,22 +11,10 @@
         ./hardware.nix
 
         nixos-wsl.nixosModules.default
-        {
-          system.stateVersion = "24.05";
-          wsl = {
-            enable = true;
-            defaultUser = "rileycat";
-            startMenuLaunchers = true;
-          };
-        }
 
         home-manager.nixosModules.home-manager
         {
-          home-manager = {
-            useUserPackages = true;
-            useGlobalPkgs = true;
-            users."rileycat".imports = self.homeImports."rileycat";
-          };
+          home-manager.users."rileycat".imports = self.homeImports."rileycat";
         }
       ];
     };
