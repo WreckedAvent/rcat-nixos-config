@@ -1,4 +1,10 @@
 {pkgs, ...}: {
+  imports = [
+    ../utils.nix
+  ];
+
+  rcat.productivity.dictd = true;
+
   networking.hostName = "wsl";
   nix.settings.experimental-features = "nix-command flakes";
   users.groups.kvm = {};
@@ -11,33 +17,10 @@
 
   users.groups.libvirtd.members = ["rileycat"];
 
-  environment = {
-    systemPackages = with pkgs; [
-      git
-      wget
-      bat
-      zsh
-      fastfetch
-      universal-ctags
-    ];
-  };
-
   programs = {
     zsh.enable = true;
 
     virt-manager.enable = true;
-
-    git = {
-      enable = true;
-      prompt.enable = true;
-    };
-  };
-
-  services = {
-    dictd = {
-      enable = true;
-      DBs = with pkgs.dictdDBs; [eng2rus eng2deu];
-    };
   };
 
   virtualisation = {
