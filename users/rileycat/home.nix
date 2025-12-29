@@ -11,12 +11,15 @@
 
   rcat = {
     coding.helix = true;
+    coding.zed = true;
 
     productivity.libreOffice = true;
 
     terminal = {
       zsh = true;
     };
+
+    unstable.enable = true;
   };
 
   home.packages = with pkgs; [

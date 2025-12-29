@@ -8,6 +8,7 @@
 in {
   options.rcat.coding = {
     helix = mkEnableOption "helix opinionated 'post-modern' editor";
+    zed = mkEnableOption "zed ai editor";
   };
 
   config = {
@@ -36,6 +37,10 @@ in {
           };
         };
       };
+    };
+
+    programs.zed-editor = mkIf opts.zed {
+      enable = true;
     };
   };
 }

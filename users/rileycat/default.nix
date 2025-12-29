@@ -4,6 +4,10 @@
   ...
 }:
 with inputs; {
+  imports = [
+    ../unstable.flake-part.nix
+  ];
+
   flake.homeImports."rileycat" = [
     ./home.nix
     self.homeModules.unstable-packages

@@ -62,14 +62,6 @@
       };
 
       flake = {
-        # simple home manager module for pulling in flake-based packages
-        homeModules.unstable-packages = {pkgs, ...}:
-          with inputs; {
-            home.packages = with unstable.legacyPackages.${pkgs.stdenv.hostPlatform.system}; [
-              zed-editor
-            ];
-          };
-
         # a simple nixos module for using our pre-configured nixpkgs
         nixosModules.flake-nixpkgs = {config, ...}: {
           nixpkgs.pkgs = withSystem config.nixpkgs.hostPlatform.system (
