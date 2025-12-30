@@ -11,6 +11,7 @@
         ./hardware.nix
 
         self.nixosModules.flake-nixpkgs
+        self.nixosModules."rileycat"
 
         nixos-wsl.nixosModules.default
 

@@ -9,9 +9,10 @@
         ./conf.nix
         ./hardware.nix
 
-        catppuccin.nixosModules.catppuccin
-
         self.nixosModules.flake-nixpkgs
+        self.nixosModules."rileycat"
+
+        catppuccin.nixosModules.catppuccin
       ];
     };
 }

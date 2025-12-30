@@ -1,8 +1,4 @@
-{
-  config,
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   imports = [
     ../audio.nix
     ../boot.nix
@@ -17,17 +13,6 @@
   nix.settings.experimental-features = "nix-command flakes";
 
   services.printing.enable = true;
-
-  users.users.rileycat = {
-    isNormalUser = true;
-    description = "riley k";
-    extraGroups = ["networkmanager" "wheel"];
-    shell = pkgs.zsh;
-  };
-
-  programs = {
-    zsh.enable = true;
-  };
 
   rcat = {
     boot = {

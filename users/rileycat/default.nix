@@ -27,4 +27,17 @@ with inputs; {
     pkgs = withSystem "x86_64-linux" ({pkgs, ...}: pkgs);
     modules = self.homeImports."rileycat@linux-any";
   };
+
+  flake.nixosModules."rileycat" = {pkgs, ...}: {
+    users.users.rileycat = {
+      isNormalUser = true;
+      description = "riley k";
+      extraGroups = ["networkmanager" "wheel"];
+      shell = pkgs.zsh;
+    };
+
+    programs = {
+      zsh.enable = true;
+    };
+  };
 }

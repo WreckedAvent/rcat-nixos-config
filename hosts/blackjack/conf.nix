@@ -16,27 +16,12 @@
 
   services.printing.enable = true;
 
-  users.users.rileycat = {
-    isNormalUser = true;
-    description = "riley k";
-    extraGroups = ["networkmanager" "wheel"];
-    shell = pkgs.zsh;
-  };
-
-  programs = {
-    zsh.enable = true;
-  };
-
   catppuccin.enable = true;
 
   rcat = {
     boot = {
       systemd-boot = true;
       useLatestKernel = false;
-    };
-
-    coding = {
-      lsp = true;
     };
 
     gaming = {
@@ -46,11 +31,7 @@
       recorder = true;
     };
 
-    networking = {
-      hostName = "blackjack";
-    };
-
-    productivity.dictd = true;
+    networking.hostName = "blackjack";
   };
 
   # the version this file was generated with

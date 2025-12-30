@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{...}: {
   imports = [
     ../productivity.nix
     ../utils.nix
@@ -8,21 +8,11 @@
 
   networking.hostName = "wsl";
   nix.settings.experimental-features = "nix-command flakes";
+
   users.groups.kvm = {};
-
-  users.users.rileycat = {
-    isNormalUser = true;
-    extraGroups = ["wheel" "kvm"];
-    shell = pkgs.zsh;
-  };
-
   users.groups.libvirtd.members = ["rileycat"];
 
-  programs = {
-    zsh.enable = true;
-
-    virt-manager.enable = true;
-  };
+  programs.virt-manager.enable = true;
 
   virtualisation = {
     libvirtd.enable = true;
