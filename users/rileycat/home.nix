@@ -26,6 +26,7 @@
     bat
     btop
     eza
+    thunderbird
     jq
     nnn
     ripgrep
@@ -57,11 +58,6 @@
     options.display = "side-by-side";
   };
 
-  # needs a profile
-  # programs.thunderbird = {
-  #   enable = true;
-  # };
-
   programs.firefox = {
     enable = true;
   };
@@ -72,12 +68,12 @@
     clean.extraArgs = "--keep-since 4d --keep 3";
   };
 
+  programs.home-manager.enable = true;
+  
   catppuccin.enable = true;
 
   systemd.user.startServices = "sd-switch";
 
-  programs.home-manager.enable = true;
-
-  # minimum compatible home version
+  # release version this file was generated with
   home.stateVersion = "25.05";
 }
