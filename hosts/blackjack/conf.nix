@@ -5,7 +5,7 @@
     ../coding.nix
     ../gaming.nix
     ../i18n.nix
-    ../kde.nix
+    ../cosmic.nix
     ../networking.nix
     ../productivity.nix
     ../utils.nix

@@ -24,10 +24,15 @@
       lsp = true;
     };
 
+    productivity = {
+      dictd = true;
+    };
+
     networking = {
       hostName = "silverwolf";
     };
   };
 
-  system.stateVersion = "25.05"; # Did you read the comment?
+  # the version this file was generated with
+  system.stateVersion = "25.05";
 }

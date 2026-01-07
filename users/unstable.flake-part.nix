@@ -7,6 +7,7 @@
   }: let
     opts = config.rcat.unstable;
     inherit (lib) mkIf mkEnableOption;
+
     system = pkgs.stdenv.hostPlatform.system;
     unstable-pkgs = inputs.unstable.legacyPackages.${system};
   in {

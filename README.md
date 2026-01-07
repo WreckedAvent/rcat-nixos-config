@@ -1,37 +1,42 @@
 # rileycat nixos configuration
 
-All of the systems I've moved to nix live here.
+all of the systems i've moved to nix live here.
 
-## *for beginners*
+> [!Note]
+> this configuration is meant to be approachable and be closer to 
+> a lightly, if productively, configured set of hosts rather than
+> any one especially riced out host.
+> this means biasing towards helix over nixvim, kde/cosmic over hyprland,
+> and not pinning down every single piece of configuration in nix.
 
-#### Welcome! 
+#### list of hosts
 
-* You can read each system's `conf.nix` and `hardware.nix` and compare it to your own.
-* If you have home manager installed, you can additionally look at `home.nix` files and do the same.
-* If your configuration is flake-based *and* you are feeling ambitious, you can look at the respective `default.nix` files.
-* You can ignore the rest of this readme.
+* `blackjack` - generic gaming computer, nvidia graphics and intel cpu (nixos)
+* `rileyrose` - microsoft surface laptop, 7th gen (w11 w/nixos-wsl)
+* `silverwolf` - framework 13 laptop, AMD 2nd gen (nixos)
+* `work-mac` - apple macbook pro, 1st gen (macos w/darwin-nixos)
 
-## *layout*
+#### how to read
 
-#### Downwards is less opinionated.
+*for a total neophyte*: don't worry yet about the flake pieces.
+you can look at the `hardware.nix` and `conf.nix` of each host and compare it to your own.
+if you see a configuration like `rcat.coding`, then look in the `hosts/coding` file to
+find out what that does (these are nixos modules). what you see is what you get.
 
-* `flake.nix` - the *flake's* entry point.
-  * The entire configuration with all imports and everything included. Not designed to be re-used.
-  
-* `**/*/default.nix` - a *flake parts'* entry point.
-  * A smaller, more specialized part of the flake. Given the right inputs, these can be re-used.
+*if you care about home-manager*: this configuration uses hm in both a standalone and
+as a nixos module, depending on the host. `home.nix` are "vanilla" home manager modules
+ without `extraSpecialArgs` set.
 
-* `**/*.flake-part.nix` - a *flake part*.
-  * The smallest piece of a flake. Only requiring a few specific inputs, these are reusable. 
+*if you care about flakes*: this configuration uses flake-parts instead of flake-util.
+each `default.nix` in a host or user's folder is meant to be directly (and explicitly)
+imported by `flake.nix`. i also believe flake inputs should stay in flake land and not
+"escape" into `conf.nix` or `home.nix`.
 
-* `hosts/*.nix` - a *nixos module*.
-  * Small chunks of code for nixos configurations. All namespaced to `rcat`. Import and re-use freely.
+#### how to install
 
-* `users/*.nix` - a *home manager module*.
-  * Small chunks of code for home configurations. All namespaced to `rcat`. Import and re-use freely.
+preferably, you do not.
 
-* `hosts/*/{conf, hardware}.nix` - a *vanilla nixos configuration*.
-  * Designed to be drop-in replacements for `nixos-generate-config`. These should not rely on flake inputs.
-
-* `users/*/home.nix` - a *vanilla home configuration*.
-  * No tool generates these, but these should not rely on flake inputs.
+each `index.nix` in a given host is meant to be *tightly* tied to that host.
+you are perfectly welcome to copy and paste every bit of code and adapt it to yours,
+however, and i would even encourage adding a folder for your own host and copy-pasting
+the results of a fresh `generate-nixos-config` into there.

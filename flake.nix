@@ -51,10 +51,6 @@
       };
 
       imports = [
-        # allow merging of hm configurations per flake part
-        # inputs.home-manager.flakeModules.home-manager
-
-        # configure flake-wide nixpkgs
         ./nixpkgs.flake-part.nix
 
         ./users/rileycat

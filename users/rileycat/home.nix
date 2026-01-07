@@ -69,7 +69,7 @@
   };
 
   programs.home-manager.enable = true;
-  
+
   catppuccin.enable = true;
 
   systemd.user.startServices = "sd-switch";
