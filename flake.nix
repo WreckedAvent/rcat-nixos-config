@@ -13,7 +13,10 @@
     };
 
     # a pervasive and system-wide theme
-    catppuccin.url = "github:catppuccin/nix/release-25.11";
+    catppuccin = {
+      url = "github:catppuccin/nix/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # opinionated flake layout to increase reusability
     flake-parts = {
@@ -28,10 +31,13 @@
     };
 
     # tweaks for specific known hardware
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware.url  = "github:NixOS/nixos-hardware/master";
 
     # for WSL hosts
-    nixos-wsl.url = "github:nix-community/NixOS-WSL/release-25.11";
+    nixos-wsl = {
+      url = "github:nix-community/NixOS-WSL/release-25.11";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # pre-compiled nix pkgs database for e.g finding what package adds what binary
     nix-index-database = {
