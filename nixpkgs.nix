@@ -17,7 +17,7 @@
         })
 
         (_: _: let
-          cosmic-pkgs-names = [
+          usual-cosmic-pkg-names = [
             "bg"
             "osd"
             "term"
@@ -27,40 +27,36 @@
             "store"
             "randr"
             "panel"
-            # "icon"
+            "icon"
             "files"
-            # "reader"
+            "reader"
             "player"
-            # "session"
+            "session"
             "greeter"
-            # "ext-ctl"
+            "ext-ctl"
             "applets"
             "settings"
             "launcher"
-            # "protocols"
+            "protocols"
             "applibrary"
-            # "screenshot"
-            # "wallpapers"
-            # "ext-tweaks"
+            "screenshot"
+            "wallpapers"
+            "ext-tweaks"
             "notifications"
-            # "ext-calculator"
-            # "settings-deamon"
+            "settings-deamon"
             "workspaces-epoch"
           ];
-          
-          unusual-cosmic-pkgs-names = [
+
+          unusual-cosmic-pkg-names = [
             "xdg-desktop-portal-cosmic"
           ];
 
           unstable-pkgs = inputs.unstable.legacyPackages.${system};
 
           prefixCosmic = builtins.map (pkg: "cosmic-" + pkg);
-          cosmic-pkgs = (prefixCosmic cosmic-pkgs-names) ++ unusual-cosmic-pkgs-names;
-          
+          all-cosmic-pkg-names = (prefixCosmic usual-cosmic-pkg-names) ++ unusual-cosmic-pkg-names;
         in
-          # 2. turn str[] into attrset[str, str]
-          lib.genAttrs cosmic-pkgs
-          # 3. attrset[str, str] into attrset[str, pkg]
+          lib.genAttrs all-cosmic-pkg-names
           (pkg-name: unstable-pkgs.${pkg-name}))
       ];
     };
