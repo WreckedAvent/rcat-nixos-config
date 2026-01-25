@@ -1,6 +1,7 @@
 {
   inputs,
   withSystem,
+  lib,
   ...
 }: {
   perSystem = {system, ...}: {
@@ -9,13 +10,58 @@
       inherit system;
       config.allowUnfree = true;
 
+      # forcefully overwrite packages that don't let us do it nicely
       overlays = [
         (self: super: {
-          # forcefully overwrite packages that don't let us do it nicely
           alejandra = inputs.alejandra.defaultPackage.${system};
-        
-          cosmic-osd = inputs.unstable.legacyPackages.${system}.cosmic-osd;
         })
+
+        (_: _: let
+          cosmic-pkgs-names = [
+            "bg"
+            "osd"
+            "term"
+            "idle"
+            "edit"
+            "comp"
+            "store"
+            "randr"
+            "panel"
+            # "icon"
+            "files"
+            # "reader"
+            "player"
+            # "session"
+            "greeter"
+            # "ext-ctl"
+            "applets"
+            "settings"
+            "launcher"
+            # "protocols"
+            "applibrary"
+            # "screenshot"
+            # "wallpapers"
+            # "ext-tweaks"
+            "notifications"
+            # "ext-calculator"
+            # "settings-deamon"
+            "workspaces-epoch"
+          ];
+          
+          unusual-cosmic-pkgs-names = [
+            "xdg-desktop-portal-cosmic"
+          ];
+
+          unstable-pkgs = inputs.unstable.legacyPackages.${system};
+
+          prefixCosmic = builtins.map (pkg: "cosmic-" + pkg);
+          cosmic-pkgs = (prefixCosmic cosmic-pkgs-names) ++ unusual-cosmic-pkgs-names;
+          
+        in
+          # 2. turn str[] into attrset[str, str]
+          lib.genAttrs cosmic-pkgs
+          # 3. attrset[str, str] into attrset[str, pkg]
+          (pkg-name: unstable-pkgs.${pkg-name}))
       ];
     };
   };

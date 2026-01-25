@@ -31,7 +31,7 @@
     };
 
     # tweaks for specific known hardware
-    nixos-hardware.url  = "github:NixOS/nixos-hardware/master";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     # for WSL hosts
     nixos-wsl = {
