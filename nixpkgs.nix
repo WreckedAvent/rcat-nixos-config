@@ -13,6 +13,8 @@
         (self: super: {
           # forcefully overwrite packages that don't let us do it nicely
           alejandra = inputs.alejandra.defaultPackage.${system};
+        
+          cosmic-osd = inputs.unstable.legacyPackages.${system}.cosmic-osd;
         })
       ];
     };
