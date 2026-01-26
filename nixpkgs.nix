@@ -43,6 +43,7 @@
             "wallpapers"
             "ext-tweaks"
             "notifications"
+            "initial-setup"
             "settings-deamon"
             "workspaces-epoch"
           ];
