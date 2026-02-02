@@ -46,41 +46,46 @@
     };
   };
 
-  outputs = inputs:
-    with inputs;
-      flake-parts.lib.mkFlake {inherit inputs;} {
-        systems = ["x86_64-linux" "aarch64-linux"];
+  outputs = {
+    self,
+    flake-parts,
+    catppuccin,
+    nix-index-database,
+    ...
+  } @ inputs:
+    flake-parts.lib.mkFlake {inherit inputs;} {
+      systems = ["x86_64-linux" "aarch64-linux"];
 
-        perSystem = {pkgs, ...}: {
-          formatter = pkgs.alejandra;
-        };
+      perSystem = {pkgs, ...}: {
+        formatter = pkgs.alejandra;
+      };
 
-        rcat.flake = {
-          nixosDefaults = [
-            self.nixosModules.nixpkgs
-            self.nixosModules."rileycat"
+      rcat.flake = {
+        nixosDefaults = [
+          self.nixosModules.nixpkgs
+          self.nixosModules."rileycat"
 
-            catppuccin.nixosModules.default
-          ];
+          catppuccin.nixosModules.default
+        ];
 
-          homeDefaults = [
-            self.homeModules.unstable
+        homeDefaults = [
+          self.homeModules.unstable
 
-            catppuccin.homeModules.default
-            nix-index-database.homeModules.default
-          ];
-        };
-
-        imports = [
-          ./rcat.nix
-          ./nixpkgs.nix
-          ./unstable.nix
-
-          ./users/rileycat
-
-          ./hosts/silverwolf
-          ./hosts/blackjack
-          ./hosts/rileyrose
+          catppuccin.homeModules.default
+          nix-index-database.homeModules.default
         ];
       };
+
+      imports = [
+        ./rcat.nix
+        ./nixpkgs.nix
+        ./unstable.nix
+
+        ./users/rileycat
+
+        ./hosts/silverwolf
+        ./hosts/blackjack
+        ./hosts/rileyrose
+      ];
+    };
 }
