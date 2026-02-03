@@ -3,8 +3,8 @@
     ../audio.nix
     ../boot.nix
     ../coding.nix
+    ../cosmic.nix
     ../i18n.nix
-    ../kde.nix
     ../networking.nix
     ../productivity.nix
     ../utils.nix

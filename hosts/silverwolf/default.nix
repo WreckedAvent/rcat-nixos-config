@@ -12,6 +12,6 @@
 
           nixos-hardware.nixosModules.framework-amd-ai-300-series
         ]
-        ++ config.rcat.flake.nixosDefault;
+        ++ config.rcat.flake.nixosDefaults;
     };
 }
