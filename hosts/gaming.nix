@@ -9,6 +9,7 @@
 in {
   options.rcat.gaming = {
     steam = mkEnableOption "steam game library manager";
+    lutris = mkEnableOption "lutris application launcher";
     nvidia = mkEnableOption "nvidia graphics driver support";
     amd = mkEnableOption "amd graphics driver support";
     gamescope = mkEnableOption "gamescope simple compositor";
@@ -38,8 +39,9 @@ in {
 
     programs.gpu-screen-recorder.enable = cfg.recorder;
 
-    environment.systemPackages = mkIf cfg.recorder [
-      pkgs.gpu-screen-recorder-gtk
+    environment.systemPackages = lib.mkMerge [
+      (mkIf cfg.recorder [pkgs.gpu-screen-recorder-gtk])
+      (mkIf cfg.lutris [pkgs.lutris])
     ];
 
     # Open GL

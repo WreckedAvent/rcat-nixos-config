@@ -26,6 +26,7 @@
 
     gaming = {
       steam = true;
+      lutris = true;
       nvidia = true;
       gamescope = true;
       recorder = true;
