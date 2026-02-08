@@ -4,8 +4,8 @@
     ../boot.nix
     ../coding.nix
     ../gaming.nix
+    ../kde.nix
     ../i18n.nix
-    ../cosmic.nix
     ../networking.nix
     ../productivity.nix
     ../utils.nix
