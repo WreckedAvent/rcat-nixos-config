@@ -15,9 +15,7 @@
 
     productivity.libreOffice = true;
 
-    terminal = {
-      zsh = true;
-    };
+    terminal.zsh = true;
 
     unstable.enable = true;
   };

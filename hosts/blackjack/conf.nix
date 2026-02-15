@@ -35,6 +35,11 @@
     networking.hostName = "blackjack";
   };
 
+  environment.systemPackages = [
+    pkgs.element-desktop
+    pkgs.fractal
+  ];
+
   # the version this file was generated with
   system.stateVersion = "25.05";
 }
