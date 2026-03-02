@@ -11,8 +11,11 @@ in {
     nerd = mkEnableOption "nerd fonts w/ ligatures";
   };
 
-  config = {
-    fonts.packages = mkMerge [
+  config.fonts = {
+    # liberation, noto, deja vu, few others
+    enableDefaultPackages = true;
+
+    packages = mkMerge [
       (mkIf cfg.nerd (with pkgs.nerd-fonts; [
         fira-code
         caskaydia-cove
@@ -22,10 +25,16 @@ in {
       ]))
 
       (with pkgs; [
-        noto-fonts
-        liberation_ttf
-        wineWowPackages.fonts
+        ubuntu-classic
       ])
     ];
+
+    fontconfig = {
+      defaultFonts = {
+        sansSerif = ["Noto Sans"];
+        serif = ["Liberation Serif"];
+        monospace = ["Hack"];
+      };
+    };
   };
 }
