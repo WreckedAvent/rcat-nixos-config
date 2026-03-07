@@ -51,6 +51,7 @@
     flake-parts,
     catppuccin,
     nix-index-database,
+    nixpkgs,
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
@@ -73,6 +74,9 @@
 
           catppuccin.homeModules.default
           nix-index-database.homeModules.default
+          {
+            nix.channels = {inherit nixpkgs;};
+          }
         ];
       };
 
