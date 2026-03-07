@@ -9,10 +9,11 @@ in {
   options.rcat.coding = {
     helix = mkEnableOption "helix opinionated 'post-modern' editor";
     zed = mkEnableOption "zed ai editor";
+    direnv = mkEnableOption "direnv automatic environment switcher";
   };
 
-  config = {
-    programs.helix = mkIf opts.helix {
+  config.programs = {
+    helix = mkIf opts.helix {
       enable = true;
       defaultEditor = true;
       settings = {
@@ -39,8 +40,14 @@ in {
       };
     };
 
-    programs.zed-editor = mkIf opts.zed {
+    zed-editor = mkIf opts.zed {
       enable = true;
+    };
+
+    direnv = mkIf opts.direnv {
+      enable = true;
+      nix-direnv.enable = true;
+      enableZshIntegration = true;
     };
   };
 }

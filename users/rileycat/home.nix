@@ -10,8 +10,11 @@
   home.homeDirectory = "/home/rileycat";
 
   rcat = {
-    coding.helix = true;
-    coding.zed = true;
+    coding = {
+      direnv = true;
+      helix = true;
+      zed = true;
+    };
 
     productivity.libreOffice = true;
 
