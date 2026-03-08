@@ -16,7 +16,7 @@ with inputs; {
 
   flake.homeConfigurations."rileycat" = home-manager.lib.homeManagerConfiguration {
     pkgs = withSystem "x86_64-linux" ({pkgs, ...}: pkgs);
-    modules = self.homeImports."rileycat@linux-any";
+    modules = self.homeImports."rileycat";
   };
 
   flake.nixosModules."rileycat" = {pkgs, ...}: {
