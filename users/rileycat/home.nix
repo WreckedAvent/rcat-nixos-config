@@ -35,6 +35,7 @@
 
   programs.fzf = {
     enable = true;
+    enableZshIntegration = true;
     defaultOptions = [
       "--height=50%"
       "--border"

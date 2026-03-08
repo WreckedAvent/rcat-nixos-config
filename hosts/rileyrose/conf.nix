@@ -1,10 +1,12 @@
 {...}: {
   imports = [
     ../productivity.nix
+    ../coding.nix
     ../utils.nix
   ];
 
   rcat.productivity.dictd = true;
+  rcat.coding.lsp = true;
 
   networking.hostName = "wsl";
   nix.settings.experimental-features = "nix-command flakes";
