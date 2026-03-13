@@ -2,13 +2,15 @@
   inputs,
   withSystem,
   lib,
+  config,
   ...
 }: {
   perSystem = {system, ...}: {
     # configure nixpkgs
     _module.args.pkgs = import inputs.nixpkgs {
       inherit system;
-      config.allowUnfree = true;
+      config.allowUnfreePredicate = pkg:
+        builtins.elem (lib.getName pkg) config.rcat.flake.unfreePkgs;
 
       # forcefully overwrite packages that don't let us do it nicely
       overlays = [

@@ -20,7 +20,7 @@
 
   rcat = {
     coding.lsp = true;
-    
+
     boot = {
       systemd-boot = true;
       useLatestKernel = false;

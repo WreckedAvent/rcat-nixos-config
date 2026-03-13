@@ -17,7 +17,8 @@ in {
   config = {
     boot.loader.efi.canTouchEfiVariables = true;
     rcat.boot.systemd-boot = mkDefault true;
-    boot.kernelPackages = if cfg.useLatestKernel
+    boot.kernelPackages =
+      if cfg.useLatestKernel
       then pkgs.linuxPackages_latest
       else pkgs.linuxPackages_6_18;
 

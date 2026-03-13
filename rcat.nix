@@ -18,5 +18,12 @@ in {
       type = types.listOf types.deferredModule;
       default = [];
     };
+
+    unfreePkgs = mkOption {
+      description = "List of package names allowed to be unfree.";
+      example = ''["steam" ]'';
+      type = types.listOf types.str;
+      default = [];
+    };
   };
 }
