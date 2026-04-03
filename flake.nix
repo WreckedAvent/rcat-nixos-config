@@ -14,6 +14,7 @@
   outputs = { self, nixpkgs, unstable, home-manager, catppuccin }@inputs:
   let
     system = "x86_64-linux";
+    pkgs = nixpkgs.legacyPackages.${system};
     pkgs-unstable = unstable.legacyPackages.${system};
   in {
     nixosConfigurations.blackjack = nixpkgs.lib.nixosSystem {
@@ -37,7 +38,7 @@
     };
     
     homeConfigurations."rileycat" = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      inherit pkgs;
       modules = [
         ./rileycat.nix
         catppuccin.homeModules.catppuccin
