@@ -1,8 +1,12 @@
 {
-  description = "nixos config entrypoint for rcat home lab";
+  description = ''
+    Nix-based entry point for rileycat homelab.
+
+    This flake is flake-parts based; each host and user defines their own flake module.
+    Configuration beginning with `rcat` is defined within this flake's directory.
+  '';
 
   inputs = {
-    # both stable and unstable are pulled, but stable should be preferred
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
@@ -18,22 +22,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # opinionated flake layout to increase reusability
     flake-parts = {
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    # obligatory for user profile management
     home-manager = {
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # tweaks for specific known hardware
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    # for WSL hosts
     nixos-wsl = {
       url = "github:nix-community/NixOS-WSL/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
