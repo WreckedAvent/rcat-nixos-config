@@ -24,15 +24,23 @@
 
         catppuccin.nixosModules.catppuccin
 
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.rileycat.imports = [
-            ./rileycat.nix
-            catppuccin.homeModules.catppuccin
-          ];
-        }
+        # home-manager.nixosModules.home-manager
+        # {
+        #   home-manager.useGlobalPkgs = true;
+        #   home-manager.useUserPackages = true;
+        #   home-manager.users.rileycat.imports = [
+        #     ./rileycat.nix
+        #     catppuccin.homeModules.catppuccin
+        #   ];
+        # }
+      ];
+    };
+    
+    homeConfigurations."rileycat" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages.x86_64-linux;
+      modules = [
+        ./rileycat.nix
+        catppuccin.homeModules.catppuccin
       ];
     };
   };
