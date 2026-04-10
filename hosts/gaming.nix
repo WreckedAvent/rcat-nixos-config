@@ -10,6 +10,7 @@ in {
   options.rcat.gaming = {
     steam = mkEnableOption "steam game library manager";
     lutris = mkEnableOption "lutris application launcher";
+    prism = mkEnableOption "prism minecraft instance manager";
     nvidia = mkEnableOption "nvidia graphics driver support";
     amd = mkEnableOption "amd graphics driver support";
     gamescope = mkEnableOption "gamescope simple compositor";
@@ -42,6 +43,7 @@ in {
     environment.systemPackages = lib.mkMerge [
       (mkIf cfg.recorder [pkgs.gpu-screen-recorder-gtk])
       (mkIf cfg.lutris [pkgs.lutris])
+      (mkIf cfg.prism [pkgs.prismlauncher])
     ];
 
     # Open GL

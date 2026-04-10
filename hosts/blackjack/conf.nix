@@ -28,7 +28,7 @@
 
     gaming = {
       steam = true;
-      lutris = true;
+      prism = true;
       nvidia = true;
       gamescope = true;
       recorder = true;
@@ -37,9 +37,9 @@
     networking.hostName = "blackjack";
   };
 
+  # TODO: module for matrix
   environment.systemPackages = [
     pkgs.element-desktop
-    pkgs.fractal
   ];
 
   # the version this file was generated with
