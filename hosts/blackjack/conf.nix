@@ -37,9 +37,19 @@
     networking.hostName = "blackjack";
   };
 
-  # TODO: module for matrix
-  environment.systemPackages = [
-    pkgs.element-desktop
+  # TODO: i don't like this way of specifying ports
+  networking.firewall = let
+    minecraft-ports = {
+      from = 25560;
+      to = 25570;
+    };
+  in {
+    allowedTCPPortRanges = [minecraft-ports];
+    allowedUDPPortRanges = [minecraft-ports];
+  };
+
+  environment.systemPackages = with pkgs; [
+    element-desktop
   ];
 
   # the version this file was generated with
