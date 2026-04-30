@@ -23,7 +23,7 @@
 
     boot = {
       systemd-boot = true;
-      useLatestKernel = false;
+      useLatestKernel = true;
     };
 
     gaming = {
