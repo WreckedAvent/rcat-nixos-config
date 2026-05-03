@@ -20,7 +20,7 @@
 
     terminal.zsh = true;
 
-    unstable.enable = true;
+    # unstable.enable = true;
   };
 
   home.packages = with pkgs; [

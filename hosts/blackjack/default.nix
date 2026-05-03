@@ -11,7 +11,7 @@
   ];
 
   flake.nixosConfigurations.blackjack = with inputs;
-    unstable.lib.nixosSystem {
+    nixpkgs.lib.nixosSystem {
       modules =
         [
           ./conf.nix

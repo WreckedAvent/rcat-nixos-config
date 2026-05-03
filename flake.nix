@@ -7,8 +7,8 @@
   '';
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
-    unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     # a formatter closest to how i write nix
     alejandra = {
@@ -18,7 +18,7 @@
 
     # a pervasive and system-wide theme
     catppuccin = {
-      url = "github:catppuccin/nix/release-25.11";
+      url = "github:catppuccin/nix/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -28,21 +28,21 @@
     };
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     nixos-wsl = {
-      url = "github:nix-community/NixOS-WSL/release-25.11";
+      url = "github:nix-community/NixOS-WSL/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # pre-compiled nix pkgs database for e.g finding what package adds what binary
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
-      inputs.nixpkgs.follows = "unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -70,7 +70,7 @@
         ];
 
         homeDefaults = [
-          self.homeModules.unstable
+          # self.homeModules.unstable
 
           catppuccin.homeModules.default
           nix-index-database.homeModules.default
@@ -83,7 +83,7 @@
       imports = [
         ./rcat.nix
         ./nixpkgs.nix
-        ./unstable.nix
+        # ./unstable.nix
 
         ./users/rileycat
 
