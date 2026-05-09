@@ -3,8 +3,8 @@
     ../audio.nix
     ../boot.nix
     ../coding.nix
-    ../cosmic.nix
     ../i18n.nix
+    ../kde.nix
     ../networking.nix
     ../productivity.nix
     ../utils.nix
@@ -14,6 +14,10 @@
   nix.settings.experimental-features = "nix-command flakes";
 
   services.printing.enable = true;
+  
+  # https://github.com/NixOS/nixos-hardware/tree/master/framework
+  services.fwupd.enable = true;
+  hardware.framework.enableKmod = true;
 
   rcat = {
     boot = {
