@@ -62,6 +62,17 @@
 
   programs.firefox = {
     enable = true;
+    # You are currently using the legacy default (`".mozilla/firefox"`) because `home.stateVersion` is less than "26.05".
+    # To silence this warning and keep legacy behavior, set:
+    #   programs.firefox.configPath = ".mozilla/firefox";
+    # To adopt the new default behavior, set:
+    #   programs.firefox.configPath = "${config.xdg.configHome}/mozilla/firefox";
+    # 
+    # To migrate to the XDG path, move `~/.mozilla/firefox` to
+    # `$XDG_CONFIG_HOME/mozilla/firefox` and remove the old directory.
+    # Native messaging hosts are not moved by this option change. 
+    configPath = "./mozilla/firefox";
+    # did you read the comment? 
   };
 
   programs.nh = {
