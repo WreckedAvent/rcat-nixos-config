@@ -18,6 +18,6 @@
             home-manager.users."rileycat".imports = self.homeImports."rileycat";
           }
         ]
-        ++ config.rcat.flake.defaultNixos;
+        ++ config.rcat.flake.nixosDefaults;
     };
 }
