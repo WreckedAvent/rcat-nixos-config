@@ -19,8 +19,8 @@ in {
         };
       };
     };
-    
-    hardware = mkOption  {
+
+    hardware = mkOption {
       description = "hardware tweaks and configurations";
       type = types.submodule {
         options = {
@@ -42,9 +42,12 @@ in {
   };
 
   config = {
-    assertions = [
+    assertions = let
+      amd = cfg.hardware.amd;
+      nvidia = cfg.hardware.nvidia;
+    in [
       {
-        assertion = !(cfg.hardware.amd && cfg.hardware.nvidia) && (cfg.hardware.amd || cfg.hardware.nvidia);
+        assertion = !(amd && nvidia) && (amd || nvidia);
         message = "only one of amd or nvidia can be supported when importing gaming module";
       }
     ];

@@ -39,7 +39,7 @@
         recorder = true;
       };
     };
-    
+
     networking.hostName = "blackjack";
 
     productivity.distrobox = true;

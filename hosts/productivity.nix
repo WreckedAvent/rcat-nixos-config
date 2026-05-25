@@ -23,7 +23,7 @@ in {
       enable = true;
       dockerCompat = true;
     };
-    
+
     environment.systemPackages = lib.mkMerge [
       (mkIf opts.distrobox [pkgs.distrobox])
     ];

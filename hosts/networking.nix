@@ -21,7 +21,7 @@ in {
       type = types.str;
       description = "the name of the host";
     };
-    
+
     openPorts = mkOption {
       description = "ports to open in the firewall for various reasons";
       type = types.submodule {
@@ -46,11 +46,10 @@ in {
     services.openssh.enable = true;
     services.resolved.enable = true;
 
-    
     networking.firewall = let
       open-ports = lib.mkMerge [
-        (mkIf opts.openPorts.minecraft [ ports.minecraft ])
-        (mkIf opts.openPorts.stellaris [ ports.stellaris ])
+        (mkIf opts.openPorts.minecraft [ports.minecraft])
+        (mkIf opts.openPorts.stellaris [ports.stellaris])
       ];
     in {
       allowedTCPPortRanges = open-ports;
