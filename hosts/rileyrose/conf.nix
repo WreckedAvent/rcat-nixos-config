@@ -2,6 +2,7 @@
   imports = [
     ../productivity.nix
     ../coding.nix
+    ../nix.nix
     ../utils.nix
   ];
 
@@ -9,7 +10,6 @@
   rcat.coding.lsp = true;
 
   networking.hostName = "wsl";
-  nix.settings.experimental-features = "nix-command flakes";
 
   users.groups.kvm = {};
   users.groups.libvirtd.members = ["rileycat"];

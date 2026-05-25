@@ -1,17 +1,15 @@
-{pkgs, ...}: {
+{...}: {
   imports = [
     ../audio.nix
     ../boot.nix
     ../coding.nix
     ../i18n.nix
     ../kde.nix
+    ../nix.nix
     ../networking.nix
     ../productivity.nix
     ../utils.nix
   ];
-
-  nix.package = pkgs.lixPackageSets.stable.lix;
-  nix.settings.experimental-features = "nix-command flakes";
 
   services.printing.enable = true;
 
@@ -25,17 +23,11 @@
       useLatestKernel = true;
     };
 
-    coding = {
-      lsp = true;
-    };
-
-    productivity = {
-      dictd = true;
-    };
-
-    networking = {
-      hostName = "silverwolf";
-    };
+    coding.lsp = true;
+  
+    productivity.dictd = true;
+  
+    networking.hostName = "silverwolf";
   };
 
   # the version this file was generated with

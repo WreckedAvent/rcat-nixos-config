@@ -3,17 +3,14 @@
     ../audio.nix
     ../boot.nix
     ../coding.nix
-    ../kde.nix
     ../games.nix
     ../i18n.nix
+    ../kde.nix
     ../networking.nix
+    ../nix.nix
     ../productivity.nix
     ../utils.nix
   ];
-
-  nix.package = pkgs.lixPackageSets.stable.lix;
-  nix.settings.experimental-features = "nix-command flakes";
-
   services.printing.enable = true;
 
   catppuccin.enable = true;
