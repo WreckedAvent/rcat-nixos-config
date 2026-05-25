@@ -4,7 +4,7 @@
   ...
 }: let
    opts = config.rcat.games;
-   inherit (lib) mkIf mkEnableOption;
+   inherit (lib) mkEnableOption;
 in {
   imports = [
    ./gaming.nix
@@ -17,7 +17,7 @@ in {
   };
 
   config = {
-    rcat.gaming = {
+    rcat.gaming.launchers = {
       prism = opts.minecraft-prism;
       heroic = opts.stellaris-heroic;
     };

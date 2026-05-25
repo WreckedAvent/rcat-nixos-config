@@ -32,10 +32,12 @@
     };
 
     gaming = {
-      steam = true;
-      nvidia = true;
-      gamescope = true;
-      recorder = true;
+      launchers.steam = true;
+      hardware.nvidia = true;
+      utils = {
+        gamescope = true;
+        recorder = true;
+      };
     };
     
     networking.hostName = "blackjack";

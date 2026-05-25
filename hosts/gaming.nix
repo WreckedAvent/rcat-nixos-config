@@ -5,58 +5,79 @@
   ...
 }: let
   cfg = config.rcat.gaming;
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib) mkIf mkEnableOption mkOption types;
 in {
   options.rcat.gaming = {
-    steam = mkEnableOption "steam game library manager";
-    lutris = mkEnableOption "lutris application launcher";
-    prism = mkEnableOption "prism minecraft instance manager";
-    heroic = mkEnableOption "heoric GOG instance manager";
+    launchers = mkOption {
+      description = "launchers and instance managers";
+      type = types.submodule {
+        options = {
+          steam = mkEnableOption "steam game library manager";
+          lutris = mkEnableOption "lutris application launcher";
+          prism = mkEnableOption "prism minecraft instance manager";
+          heroic = mkEnableOption "heoric GOG instance manager";
+        };
+      };
+    };
     
-    nvidia = mkEnableOption "nvidia graphics driver support";
-    amd = mkEnableOption "amd graphics driver support";
-    
-    gamescope = mkEnableOption "gamescope simple compositor";
-    recorder = mkEnableOption "screen recording via gpu screen rec";
+    hardware = mkOption  {
+      description = "hardware tweaks and configurations";
+      type = types.submodule {
+        options = {
+          nvidia = mkEnableOption "nvidia graphics driver support";
+          amd = mkEnableOption "amd graphics driver support";
+        };
+      };
+    };
+
+    utils = mkOption {
+      description = "utilities useful in a gaming context";
+      type = types.submodule {
+        options = {
+          gamescope = mkEnableOption "gamescope simple compositor";
+          recorder = mkEnableOption "screen recording via gpu screen rec";
+        };
+      };
+    };
   };
 
   config = {
     assertions = [
       {
-        assertion = !(cfg.amd && cfg.nvidia) && (cfg.amd || cfg.nvidia);
+        assertion = !(cfg.hardware.amd && cfg.hardware.nvidia) && (cfg.hardware.amd || cfg.hardware.nvidia);
         message = "only one of amd or nvidia can be supported when importing gaming module";
       }
     ];
 
-    programs.steam = mkIf cfg.steam {
+    programs.steam = mkIf cfg.launchers.steam {
       enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
-      gamescopeSession.enable = cfg.gamescope;
+      gamescopeSession.enable = cfg.utils.gamescope;
     };
 
-    programs.gamescope = mkIf cfg.gamescope {
+    programs.gamescope = mkIf cfg.utils.gamescope {
       enable = true;
       capSysNice = true;
     };
 
-    programs.gpu-screen-recorder.enable = cfg.recorder;
+    programs.gpu-screen-recorder.enable = cfg.utils.recorder;
 
     environment.systemPackages = lib.mkMerge [
-      (mkIf cfg.recorder [pkgs.gpu-screen-recorder-gtk])
-      (mkIf cfg.lutris [pkgs.lutris])
-      (mkIf cfg.prism [pkgs.prismlauncher])
-      (mkIf cfg.heroic [pkgs.heroic])
+      (mkIf cfg.utils.recorder [pkgs.gpu-screen-recorder-gtk])
+      (mkIf cfg.launchers.lutris [pkgs.lutris])
+      (mkIf cfg.launchers.prism [pkgs.prismlauncher])
+      (mkIf cfg.launchers.heroic [pkgs.heroic])
     ];
 
     # Open GL
-    hardware.graphics.enable = cfg.nvidia or cfg.amd;
+    hardware.graphics.enable = cfg.hardware.nvidia or cfg.hardware.amd;
 
     # Load nvidia driver for Xorg and Wayland
-    services.xserver.videoDrivers = mkIf cfg.nvidia ["nvidia"];
+    services.xserver.videoDrivers = mkIf cfg.hardware.nvidia ["nvidia"];
 
-    hardware.nvidia = mkIf cfg.nvidia {
+    hardware.nvidia = mkIf cfg.hardware.nvidia {
       # Modesetting is required.
       modesetting.enable = true;
 

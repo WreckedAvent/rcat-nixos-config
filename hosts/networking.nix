@@ -4,7 +4,7 @@
   ...
 }: let
   opts = config.rcat.networking;
-  inherit (lib) mkOption mkEnableOption types;
+  inherit (lib) mkOption mkIf mkEnableOption types;
   ports = {
     minecraft = {
       from = 25560;
@@ -48,9 +48,10 @@ in {
 
     
     networking.firewall = let
-      open-ports = []
-        ++ (if opts.openPorts.minecraft then [ ports.minecraft ] else [])
-        ++ (if opts.openPorts.stellaris then [ ports.stellaris ] else []);
+      open-ports = lib.mkMerge [
+        (mkIf opts.openPorts.minecraft [ ports.minecraft ])
+        (mkIf opts.openPorts.stellaris [ ports.stellaris ])
+      ];
     in {
       allowedTCPPortRanges = open-ports;
       allowedUDPPortRanges = open-ports;
