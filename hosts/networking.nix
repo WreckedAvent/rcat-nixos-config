@@ -4,12 +4,32 @@
   ...
 }: let
   opts = config.rcat.networking;
-  inherit (lib) mkOption types;
+  inherit (lib) mkOption mkEnableOption types;
+  ports = {
+    minecraft = {
+      from = 25560;
+      to = 25570;
+    };
+    stellaris = {
+      from = 17780;
+      to = 17785;
+    };
+  };
 in {
   options.rcat.networking = {
     hostName = mkOption {
       type = types.str;
       description = "the name of the host";
+    };
+    
+    openPorts = mkOption {
+      description = "ports to open in the firewall for various reasons";
+      type = types.submodule {
+        options = {
+          minecraft = mkEnableOption "minecraft ports";
+          stellaris = mkEnableOption "stellaris ports";
+        };
+      };
     };
   };
 
@@ -26,8 +46,16 @@ in {
     services.openssh.enable = true;
     services.resolved.enable = true;
 
-    # networking.firewall.allowedTCPPorts = [ ... ];
-    # networking.firewall.allowedUDPPorts = [ ... ];
+    
+    networking.firewall = let
+      open-ports = []
+        ++ (if opts.openPorts.minecraft then [ ports.minecraft ] else [])
+        ++ (if opts.openPorts.stellaris then [ ports.stellaris ] else []);
+    in {
+      allowedTCPPortRanges = open-ports;
+      allowedUDPPortRanges = open-ports;
+    };
+
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     # networking.proxy.default = "http://user:password@proxy:port/";
     # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";

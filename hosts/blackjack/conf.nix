@@ -33,33 +33,20 @@
       gamescope = true;
       recorder = true;
     };
-
-    networking.hostName = "blackjack";
-  };
-
-  virtualisation.podman = {
-    enable = true;
-    dockerCompat = true;
-  };
-
-  # TODO: i don't like this way of specifying ports
-  networking.firewall = let
-    minecraft-ports = {
-      from = 25560;
-      to = 25570;
+    
+    networking = {
+      hostName = "blackjack";
+      openPorts = {
+        minecraft = true;
+        stellaris = true;
+      };
     };
-    stellaris-ports = {
-      from = 17780;
-      to = 17785;
-    };
-  in {
-    allowedTCPPortRanges = [minecraft-ports stellaris-ports];
-    allowedUDPPortRanges = [minecraft-ports stellaris-ports];
+
+    productivity.distrobox = true;
   };
 
   environment.systemPackages = with pkgs; [
     element-desktop
-    distrobox
     heroic
   ];
 
