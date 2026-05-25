@@ -4,7 +4,7 @@
     ../boot.nix
     ../coding.nix
     ../kde.nix
-    ../gaming.nix
+    ../games.nix
     ../i18n.nix
     ../networking.nix
     ../productivity.nix
@@ -26,28 +26,25 @@
       useLatestKernel = true;
     };
 
+    games = {
+      minecraft-prism = true;
+      stellaris-heroic = true;
+    };
+
     gaming = {
       steam = true;
-      prism = true;
       nvidia = true;
       gamescope = true;
       recorder = true;
     };
     
-    networking = {
-      hostName = "blackjack";
-      openPorts = {
-        minecraft = true;
-        stellaris = true;
-      };
-    };
+    networking.hostName = "blackjack";
 
     productivity.distrobox = true;
   };
 
   environment.systemPackages = with pkgs; [
     element-desktop
-    heroic
   ];
 
   # the version this file was generated with

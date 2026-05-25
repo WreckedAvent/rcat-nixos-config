@@ -11,8 +11,11 @@ in {
     steam = mkEnableOption "steam game library manager";
     lutris = mkEnableOption "lutris application launcher";
     prism = mkEnableOption "prism minecraft instance manager";
+    heroic = mkEnableOption "heoric GOG instance manager";
+    
     nvidia = mkEnableOption "nvidia graphics driver support";
     amd = mkEnableOption "amd graphics driver support";
+    
     gamescope = mkEnableOption "gamescope simple compositor";
     recorder = mkEnableOption "screen recording via gpu screen rec";
   };
@@ -44,6 +47,7 @@ in {
       (mkIf cfg.recorder [pkgs.gpu-screen-recorder-gtk])
       (mkIf cfg.lutris [pkgs.lutris])
       (mkIf cfg.prism [pkgs.prismlauncher])
+      (mkIf cfg.heroic [pkgs.heroic])
     ];
 
     # Open GL
