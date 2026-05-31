@@ -62,7 +62,9 @@ in {
 
     programs.gamescope = mkIf cfg.utils.gamescope {
       enable = true;
-      capSysNice = true;
+      # https://github.com/NixOS/nixpkgs/issues/523200#issuecomment-4526449111
+      # TODO: check on this in a few months
+      # capSysNice = true;
     };
 
     programs.gpu-screen-recorder.enable = cfg.utils.recorder;

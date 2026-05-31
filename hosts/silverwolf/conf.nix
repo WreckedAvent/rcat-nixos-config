@@ -24,9 +24,9 @@
     };
 
     coding.lsp = true;
-  
+
     productivity.dictd = true;
-  
+
     networking.hostName = "silverwolf";
   };
 
