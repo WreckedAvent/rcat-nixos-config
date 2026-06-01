@@ -84,6 +84,7 @@
   programs.home-manager.enable = true;
 
   catppuccin.enable = true;
+  catppuccin.autoEnable = true;
 
   systemd.user.startServices = "sd-switch";
 
