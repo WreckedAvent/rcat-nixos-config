@@ -14,6 +14,7 @@
   services.printing.enable = true;
 
   catppuccin.enable = true;
+  catppuccin.autoEnable = true;
 
   rcat = {
     coding.lsp = true;
@@ -30,6 +31,7 @@
 
     gaming = {
       launchers.steam = true;
+      launchers.smm = true;
       hardware.nvidia = true;
       utils = {
         gamescope = true;

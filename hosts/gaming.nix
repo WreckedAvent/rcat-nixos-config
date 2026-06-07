@@ -16,6 +16,7 @@ in {
           lutris = mkEnableOption "lutris application launcher";
           prism = mkEnableOption "prism minecraft instance manager";
           heroic = mkEnableOption "heoric GOG instance manager";
+          smm = mkEnableOption "satisfactory mod manager";
         };
       };
     };
@@ -74,6 +75,23 @@ in {
       (mkIf cfg.launchers.lutris [pkgs.lutris])
       (mkIf cfg.launchers.prism [pkgs.prismlauncher])
       (mkIf cfg.launchers.heroic [pkgs.heroic])
+      (mkIf cfg.launchers.smm [
+        (pkgs.satisfactorymodmanager.overrideAttrs {
+          # todo: remove all of this
+          pname = "satisfactorymodmanager";
+          version = "3.1.0";
+
+          # update github ref
+          src = pkgs.fetchFromGitHub {
+            owner = "satisfactorymodding";
+            repo = "SatisfactoryModManager";
+            tag = "v3.1.0";
+            hash = "sha256-X8uky9+FhtaAHMY6XrvTZTo3mILcWnlrjq/1SJ9UBkw=";
+          };
+
+          vendorHash = "sha256-a8o69vrW6TfrYmBRlSNE4NqemJUBFQilsVj+qwLYcbo=";
+        })
+      ])
     ];
 
     # Open GL
