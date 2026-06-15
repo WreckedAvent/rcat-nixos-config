@@ -86,6 +86,35 @@
   catppuccin.enable = true;
   catppuccin.autoEnable = true;
 
+  programs.noctalia = {
+    enable = true;
+
+    settings = {
+      # This may also be a string or path to a .toml file.
+      bar.main = {
+        auto_hide = true;
+        margin_ends = 60;
+      };
+
+      theme = {
+        mode = "dark";
+        source = "builtin";
+        builtin = "Catppuccin";
+      };
+
+      location = {
+        auto_locate = true;
+      };
+
+      wallpaper = {
+        enabled = true;
+        default.path = "/home/rileycat/nixos-config/img/amy2.png";
+      };
+    };
+  };
+
+  xdg.configFile."niri/config.kdl".source = ./niri.kdl;
+
   systemd.user.startServices = "sd-switch";
 
   # release version this file was generated with

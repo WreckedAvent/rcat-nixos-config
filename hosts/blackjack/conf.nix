@@ -5,11 +5,12 @@
     ../coding.nix
     ../games.nix
     ../i18n.nix
-    ../kde.nix
     ../networking.nix
     ../nix.nix
     ../productivity.nix
     ../utils.nix
+
+    ../nnn
   ];
   services.printing.enable = true;
 

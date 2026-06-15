@@ -24,6 +24,10 @@ in {
         font = {
           size = 12;
         };
+        window = {
+          padding.x = 10;
+          padding.y = 10;
+        };
         scrolling.multiplier = 5;
         selection.save_to_clipboard = true;
       };

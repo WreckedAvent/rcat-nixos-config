@@ -44,6 +44,11 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -52,6 +57,7 @@
     catppuccin,
     nix-index-database,
     nixpkgs,
+    noctalia,
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
@@ -67,6 +73,12 @@
           self.nixosModules."rileycat"
 
           catppuccin.nixosModules.default
+
+          ({pkgs, ...}: {
+            environment.systemPackages = [
+              noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+            ];
+          })
         ];
 
         homeDefaults = [
@@ -74,6 +86,8 @@
 
           catppuccin.homeModules.default
           nix-index-database.homeModules.default
+          noctalia.homeModules.default
+
           {
             nix.channels = {inherit nixpkgs;};
           }
