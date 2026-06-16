@@ -86,15 +86,36 @@
   catppuccin.enable = true;
   catppuccin.autoEnable = true;
 
+  programs.swaylock = {
+    enable = true;
+    settings = {
+      image = "/home/rileycat/nixos-config/img/amy.png";
+    };
+  };
+
   programs.noctalia = {
     enable = true;
 
     settings = {
       # This may also be a string or path to a .toml file.
       bar.main = {
-        auto_hide = true;
         margin_ends = 60;
+        start = ["launcher" "spacer" "clock" "spacer" "volume" "media" "audio_visualizer"];
+        center = ["active_window" "spacer" "workspaces"];
+        end = ["tray" "notifications" "clipboard" "spacer" "sysmon" "network"
+          "bluetooth" "brightness" "battery" "spacer" "control-center" "session"
+        ];
       };
+
+      widget.media.hide_when_no_media = true;
+      widget.audio-visuualizer.show_when_idle= false;
+      
+      dock = {
+        enabled = true;
+        auto_hide = true;
+        active_monitor_only = true;
+        reserve_space = false;
+      };      
 
       theme = {
         mode = "dark";

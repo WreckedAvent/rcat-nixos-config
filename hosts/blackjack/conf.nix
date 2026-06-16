@@ -47,6 +47,8 @@
 
   environment.systemPackages = with pkgs; [
     element-desktop
+    spotify-player
+    kdePackages.audiotube
   ];
 
   # the version this file was generated with

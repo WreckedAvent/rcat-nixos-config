@@ -26,6 +26,9 @@ in {
 
       (with pkgs; [
         ubuntu-classic
+        noto-fonts
+        noto-fonts-cjk-sans
+        noto-fonts-color-emoji
       ])
     ];
 

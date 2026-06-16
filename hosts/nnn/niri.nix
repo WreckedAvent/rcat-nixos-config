@@ -24,10 +24,10 @@
     enable = true;
     settings = {
       default_session = let
-        niri = "${lib.getBin config.programs.niri.package}";
-        tui = "${lib.getBin pkgs.tuigreet}";
+        niri = lib.getExe config.programs.niri.package;
+        tui-greet = lib.getExe pkgs.tuigreet;
       in {
-        command = "${tui}/bin/tuigreet --time --cmd  ${niri}/bin/niri-session";
+        command = "${tui-greet} --time --cmd  ${niri}";
         user = "greeter";
       };
     };
