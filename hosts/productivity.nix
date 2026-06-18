@@ -10,6 +10,8 @@ in {
   options.rcat.productivity = {
     dictd = mkEnableOption "dictd dictionary/translator";
     distrobox = mkEnableOption "distrobox distro emulator";
+    spotify = mkEnableOption "spotify front-end (spotify-player)";
+    youtube-music = mkEnableOption "YT music front-end (audiotube)";
   };
 
   config = {
@@ -26,6 +28,8 @@ in {
 
     environment.systemPackages = lib.mkMerge [
       (mkIf opts.distrobox [pkgs.distrobox])
+      (mkIf opts.spotify [pkgs.spotify-player])
+      (mkIf opts.youtube-music [pkgs.kdePackages.audiotube])
     ];
   };
 }

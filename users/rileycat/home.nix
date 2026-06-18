@@ -102,20 +102,31 @@
         margin_ends = 60;
         start = ["launcher" "spacer" "clock" "spacer" "volume" "media" "audio_visualizer"];
         center = ["active_window" "spacer" "workspaces"];
-        end = ["tray" "notifications" "clipboard" "spacer" "sysmon" "network"
-          "bluetooth" "brightness" "battery" "spacer" "control-center" "session"
+        end = [
+          "tray"
+          "notifications"
+          "clipboard"
+          "spacer"
+          "sysmon"
+          "network"
+          "bluetooth"
+          "brightness"
+          "battery"
+          "spacer"
+          "control-center"
+          "session"
         ];
       };
 
       widget.media.hide_when_no_media = true;
-      widget.audio-visuualizer.show_when_idle= false;
-      
+      widget.audio-visuualizer.show_when_idle = false;
+
       dock = {
         enabled = true;
         auto_hide = true;
         active_monitor_only = true;
         reserve_space = false;
-      };      
+      };
 
       theme = {
         mode = "dark";
