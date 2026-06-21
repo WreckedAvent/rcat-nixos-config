@@ -10,9 +10,13 @@
   security.pam.services.swaylock = {};
 
   environment.systemPackages = with pkgs; [
+    # application launcher
     fuzzel
-    # todo: configure
+    # automatically lock
+    swayidle
+    # locking mechanism
     swaylock
+    # notifications
     mako
     # greeter
     tuigreet

@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ lib, pkgs, ...}: {
   imports = [
     ../coding.nix
     ../nix-utils.nix
@@ -91,6 +91,19 @@
     settings = {
       image = "/home/rileycat/nixos-config/img/amy.png";
     };
+  };
+
+  services.swayidle = {
+    enable = true;
+    timeouts = let
+      swaylock = lib.getExe pkgs.swaylock;
+      systemctl = lib.getExe' pkgs.systemd "systemctl";
+      timeout = timeout: command: { inherit timeout command; };
+      mins = seconds: seconds * 60;
+    in [
+      (timeout (mins 5) "${swaylock} -fF")
+      (timeout (mins 10) "${systemctl} suspend")
+    ];
   };
 
   programs.noctalia = {
