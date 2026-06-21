@@ -93,19 +93,6 @@
     };
   };
 
-  services.swayidle = {
-    enable = true;
-    timeouts = let
-      swaylock = lib.getExe pkgs.swaylock;
-      systemctl = lib.getExe' pkgs.systemd "systemctl";
-      timeout = timeout: command: { inherit timeout command; };
-      mins = seconds: seconds * 60;
-    in [
-      (timeout (mins 5) "${swaylock} -fF")
-      (timeout (mins 10) "${systemctl} suspend")
-    ];
-  };
-
   programs.noctalia = {
     enable = true;
 
@@ -132,7 +119,7 @@
       };
 
       widget.media.hide_when_no_media = true;
-      widget.audio-visuualizer.show_when_idle = false;
+      widget.audio_visualizer.show_when_idle = false;
 
       dock = {
         enabled = true;
@@ -145,6 +132,30 @@
         mode = "dark";
         source = "builtin";
         builtin = "Catppuccin";
+      };
+
+      idle.behavior = {
+        lock = {
+          enabled = true;
+          timeout = 300;
+        };
+        
+        screen-off = {
+          enabled = true;
+          timeout = 600;
+        };
+        
+        lock-and-suspend = {
+          enabled = true;
+          timeout = 900;
+        };
+      };
+
+      shell = {
+        ui_scale = 1.15;
+        avatar_path = "/home/rileycat/nixos-config/img/chloe away.png";
+        niri_overview_type_to_launch_enabled = true;
+        
       };
 
       location = {
