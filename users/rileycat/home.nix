@@ -138,16 +138,20 @@
         lock = {
           enabled = true;
           timeout = 300;
+          command = "noctalia:session lock";
         };
         
         screen-off = {
           enabled = true;
           timeout = 600;
+          command = "noctalia:dpms-off";
+          resume_command = "noctalia:dpms-on";
         };
         
         lock-and-suspend = {
           enabled = true;
           timeout = 900;
+          command = "noctalia:session lock-and-suspend";
         };
       };
 
@@ -155,7 +159,6 @@
         ui_scale = 1.15;
         avatar_path = "/home/rileycat/nixos-config/img/chloe away.png";
         niri_overview_type_to_launch_enabled = true;
-        
       };
 
       location = {
