@@ -10,7 +10,7 @@
     ../productivity.nix
     ../utils.nix
 
-    ../nnn
+    ../kde.nix
   ];
   services.printing.enable = true;
 
@@ -28,7 +28,7 @@
     gaming = {
       launchers.steam = true;
       launchers.smm = true;
-      hardware.nvidia = true;
+      hardware.amd = true;
 
       utils = {
         gamescope = true;

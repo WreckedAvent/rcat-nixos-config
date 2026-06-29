@@ -59,6 +59,7 @@ in {
       dedicatedServer.openFirewall = true;
       localNetworkGameTransfers.openFirewall = true;
       gamescopeSession.enable = cfg.utils.gamescope;
+      protontricks.enable = true;
     };
 
     programs.gamescope = mkIf cfg.utils.gamescope {
@@ -95,10 +96,19 @@ in {
     ];
 
     # Open GL
-    hardware.graphics.enable = cfg.hardware.nvidia or cfg.hardware.amd;
+    hardware.graphics.enable = true;
 
     # Load nvidia driver for Xorg and Wayland
     services.xserver.videoDrivers = mkIf cfg.hardware.nvidia ["nvidia"];
+
+    hardware.amdgpu = mkIf cfg.hardware.amd {
+      initrd.enable = true;
+      overdrive.enable = true;
+    };
+
+    services.lact = mkIf cfg.hardware.amd {
+      enable = true;
+    };
 
     hardware.nvidia = mkIf cfg.hardware.nvidia {
       # Modesetting is required.

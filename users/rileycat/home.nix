@@ -1,4 +1,4 @@
-{ lib, pkgs, ...}: {
+{pkgs, ...}: {
   imports = [
     ../coding.nix
     ../nix-utils.nix
@@ -140,14 +140,14 @@
           timeout = 300;
           command = "noctalia:session lock";
         };
-        
+
         screen-off = {
           enabled = true;
           timeout = 600;
           command = "noctalia:dpms-off";
           resume_command = "noctalia:dpms-on";
         };
-        
+
         lock-and-suspend = {
           enabled = true;
           timeout = 900;
