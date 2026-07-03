@@ -45,8 +45,14 @@
     };
   };
 
+  services.qbittorrent = {
+    enable = true;
+    openFirewall = true;
+  };
+
   environment.systemPackages = with pkgs; [
     element-desktop
+    qbittorrent
   ];
 
   # the version this file was generated with
