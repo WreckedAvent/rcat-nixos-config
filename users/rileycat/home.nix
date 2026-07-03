@@ -2,6 +2,7 @@
   imports = [
     ../coding.nix
     ../nix-utils.nix
+    ../nnn.nix
     ../productivity.nix
     ../terminal.nix
   ];
@@ -16,11 +17,11 @@
       zed = true;
     };
 
+    environment.nnn = false;
+
     productivity.libreOffice = true;
 
     terminal.zsh = true;
-
-    # unstable.enable = true;
   };
 
   home.packages = with pkgs; [
@@ -85,94 +86,6 @@
 
   catppuccin.enable = true;
   catppuccin.autoEnable = true;
-
-  programs.swaylock = {
-    enable = true;
-    settings = {
-      image = "/home/rileycat/nixos-config/img/amy.png";
-    };
-  };
-
-  programs.noctalia = {
-    enable = true;
-
-    settings = {
-      # This may also be a string or path to a .toml file.
-      bar.main = {
-        margin_ends = 60;
-        start = ["launcher" "spacer" "clock" "spacer" "volume" "media" "audio_visualizer"];
-        center = ["active_window" "spacer" "workspaces"];
-        end = [
-          "tray"
-          "notifications"
-          "clipboard"
-          "spacer"
-          "sysmon"
-          "network"
-          "bluetooth"
-          "brightness"
-          "battery"
-          "spacer"
-          "control-center"
-          "session"
-        ];
-      };
-
-      widget.media.hide_when_no_media = true;
-      widget.audio_visualizer.show_when_idle = false;
-
-      dock = {
-        enabled = true;
-        auto_hide = true;
-        active_monitor_only = true;
-        reserve_space = false;
-      };
-
-      theme = {
-        mode = "dark";
-        source = "builtin";
-        builtin = "Catppuccin";
-      };
-
-      idle.behavior = {
-        lock = {
-          enabled = true;
-          timeout = 300;
-          command = "noctalia:session lock";
-        };
-
-        screen-off = {
-          enabled = true;
-          timeout = 600;
-          command = "noctalia:dpms-off";
-          resume_command = "noctalia:dpms-on";
-        };
-
-        lock-and-suspend = {
-          enabled = true;
-          timeout = 900;
-          command = "noctalia:session lock-and-suspend";
-        };
-      };
-
-      shell = {
-        ui_scale = 1.15;
-        avatar_path = "/home/rileycat/nixos-config/img/chloe away.png";
-        niri_overview_type_to_launch_enabled = true;
-      };
-
-      location = {
-        auto_locate = true;
-      };
-
-      wallpaper = {
-        enabled = true;
-        default.path = "/home/rileycat/nixos-config/img/amy2.png";
-      };
-    };
-  };
-
-  xdg.configFile."niri/config.kdl".source = ./niri.kdl;
 
   systemd.user.startServices = "sd-switch";
 

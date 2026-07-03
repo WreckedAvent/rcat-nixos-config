@@ -22,6 +22,8 @@ in {
         inconsolata
         hasklug
         droid-sans-mono
+        blex-mono
+        zed-mono
       ]))
 
       (with pkgs; [
@@ -36,7 +38,7 @@ in {
       defaultFonts = {
         sansSerif = ["Noto Sans"];
         serif = ["Liberation Serif"];
-        monospace = ["Hack"];
+        monospace = ["BlexMono"];
       };
     };
   };

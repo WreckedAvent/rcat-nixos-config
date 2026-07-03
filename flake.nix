@@ -7,7 +7,6 @@
   '';
 
   inputs = {
-    #nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     # a formatter closest to how i write nix
@@ -74,16 +73,24 @@
 
           catppuccin.nixosModules.default
 
-          ({pkgs, ...}: {
-            environment.systemPackages = [
-              noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+          ({
+            pkgs,
+            lib,
+            config,
+            ...
+          }: let
+            opts = config.rcat.noctalia;
+            sys = pkgs.stdenv.hostPlatform.system;
+          in {
+            options.rcat.noctalia.enable = lib.mkEnableOption "noctalia shell";
+
+            config.environment.systemPackages = lib.mkIf opts.enable [
+              noctalia.packages.${sys}.default
             ];
           })
         ];
 
         homeDefaults = [
-          # self.homeModules.unstable
-
           catppuccin.homeModules.default
           nix-index-database.homeModules.default
           noctalia.homeModules.default
@@ -97,7 +104,6 @@
       imports = [
         ./rcat.nix
         ./nixpkgs.nix
-        # ./unstable.nix
 
         ./users/rileycat
 

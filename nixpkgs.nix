@@ -17,50 +17,6 @@
         (self: super: {
           alejandra = inputs.alejandra.defaultPackage.${system};
         })
-
-        (_: _: let
-          usual-cosmic-pkg-names = [
-            "bg"
-            "osd"
-            "term"
-            "idle"
-            "edit"
-            "comp"
-            "store"
-            "randr"
-            "panel"
-            "icon"
-            "files"
-            "reader"
-            "player"
-            "session"
-            "greeter"
-            "ext-ctl"
-            "applets"
-            "settings"
-            "launcher"
-            "protocols"
-            "applibrary"
-            "screenshot"
-            "wallpapers"
-            "ext-tweaks"
-            "notifications"
-            "initial-setup"
-            "settings-deamon"
-            "workspaces-epoch"
-          ];
-
-          unusual-cosmic-pkg-names = [
-            "xdg-desktop-portal-cosmic"
-          ];
-
-          unstable-pkgs = inputs.unstable.legacyPackages.${system};
-
-          prefixCosmic = builtins.map (pkg: "cosmic-" + pkg);
-          all-cosmic-pkg-names = (prefixCosmic usual-cosmic-pkg-names) ++ unusual-cosmic-pkg-names;
-        in
-          lib.genAttrs all-cosmic-pkg-names
-          (pkg-name: unstable-pkgs.${pkg-name}))
       ];
     };
   };
