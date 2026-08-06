@@ -6,6 +6,7 @@
   rcat.flake.unfreePkgs = [
     "steam"
     "steam-unwrapped"
+    "claude-code"
   ];
 
   flake.nixosConfigurations.blackjack = with inputs;

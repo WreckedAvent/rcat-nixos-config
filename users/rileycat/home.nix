@@ -55,9 +55,14 @@
 
   programs.git = {
     enable = true;
-    settings.user = {
-      name = "rileycat";
-      email = "deliciousfaith@live.net";
+    settings = {
+      user = {
+        name = "rileycat";
+        email = "deliciousfaith@live.net";
+      };
+      
+      log.date =  "relative";
+      format.pretty = "format:%h %Cblue%ad%Creset %ae %Cgreen%s%Creset"; 
     };
   };
 

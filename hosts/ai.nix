@@ -10,5 +10,6 @@
 
   environment.systemPackages = [
     pkgs.opencode
+    pkgs.claude-code
   ];
 }
