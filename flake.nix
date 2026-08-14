@@ -8,15 +8,15 @@
    '';
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
     unstable.url = "github:nixos/nixpkgs?ref=nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     
-    catppuccin.url = "github:catppuccin/nix/release-25.11";
+    catppuccin.url = "github:catppuccin/nix/release-26.05";
   };
 
   outputs = { self, nixpkgs, unstable, home-manager, catppuccin }:
@@ -25,6 +25,8 @@
     pkgs = nixpkgs.legacyPackages.${system};
     pkgs-unstable = unstable.legacyPackages.${system};
   in {
+    inherit self;
+    
     ## nixos configuration
     nixosConfigurations.blackjack = nixpkgs.lib.nixosSystem {
       inherit system;
