@@ -21,21 +21,27 @@
 
   outputs = { self, nixpkgs, unstable, home-manager, catppuccin }:
   let
-    system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
-    pkgs-unstable = unstable.legacyPackages.${system};
+    pkg-args = {
+      system = "x86_64-linux";
+      # uncomment allow unfree packages
+      # config.allowUnfree = true;
+    };
+    pkgs = import nixpkgs pkg-args;
+    pkgs-unstable = import unstable pkg-args;
   in {
     inherit self;
     
     ## nixos configuration
+    ##
     nixosConfigurations.blackjack = nixpkgs.lib.nixosSystem {
-      inherit system;
       specialArgs = { inherit pkgs-unstable; }; 
       modules = [
         ./configuration.nix
         catppuccin.nixosModules.catppuccin
 
         ## home manager nixos module
+        ## builds with nixos configuration, needs sudo elevation to switch
+        ## 
         # home-manager.nixosModules.home-manager
         # {
         #   home-manager.useGlobalPkgs = true;
@@ -49,6 +55,8 @@
     };
 
     ## home manager standalone configuration
+    ## builds separately from nixos configuration, no elevation
+    ##
     homeConfigurations."rileycat" = home-manager.lib.homeManagerConfiguration {
       inherit pkgs;
       modules = [
