@@ -1,23 +1,34 @@
-{pkgs, ...}: {
-  environment.systemPackages = with pkgs; [
-    # global utils
-    vim
-    wget
-    file
-    which
-    tree
+{
+  pkgs,
+  lib,
+  ...
+}: {
+  environment.systemPackages = with pkgs;
+    lib.mkMerge [
+      [
+        # global utils
+        vim
+        wget
+        file
+        which
+        tree
 
-    # system interrogation
-    fastfetch
-    psmisc
-    ethtool
-    dnsutils
-    pciutils
-    usbutils
+        # system interrogation
+        fastfetch
+        dnsutils
+        pciutils
+        usbutils
 
-    # monitor
-    iotop
-    iftop
-    htop
-  ];
+        # monitor
+        iftop
+        htop
+      ]
+
+      (lib.mkIf pkgs.stdenv.isLinux [
+        ethtool
+        pmisc
+
+        iotop
+      ])
+    ];
 }

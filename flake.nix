@@ -38,6 +38,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # pre-compiled nix pkgs database for e.g finding what package adds what binary
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
@@ -60,7 +65,7 @@
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
-      systems = ["x86_64-linux" "aarch64-linux"];
+      systems = ["x86_64-linux" "aarch64-linux" "aarch64-darwin"];
 
       perSystem = {pkgs, ...}: {
         formatter = pkgs.alejandra;
@@ -110,6 +115,7 @@
         ./hosts/silverwolf
         ./hosts/blackjack
         ./hosts/rileyrose
+        ./hosts/hockeypuck
       ];
     };
 }

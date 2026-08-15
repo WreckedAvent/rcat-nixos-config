@@ -60,9 +60,9 @@
         name = "rileycat";
         email = "deliciousfaith@live.net";
       };
-      
-      log.date =  "relative";
-      format.pretty = "format:%h %Cblue%ad%Creset %ae %Cgreen%s%Creset"; 
+
+      log.date = "relative";
+      format.pretty = "format:%h %Cblue%ad%Creset %ae %Cgreen%s%Creset";
     };
   };
 
