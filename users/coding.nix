@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  pkgs,
   ...
 }: let
   opts = config.rcat.coding;
@@ -23,7 +24,10 @@ in {
           rulers = [80 120];
 
           indent-guides = {
-            character = "⸽";
+            character =
+              if pkgs.stdenv.isLinux
+              then "⸽"
+              else "╎";
             render = true;
           };
 

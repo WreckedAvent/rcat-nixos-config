@@ -14,7 +14,7 @@ all of the systems i've moved to nix live here.
 * `blackjack` - generic gaming computer, nvidia graphics and intel cpu (nixos)
 * `rileyrose` - microsoft surface laptop, 7th gen (w11 w/nixos-wsl)
 * `silverwolf` - framework 13 laptop, AMD 2nd gen (nixos)
-* `work-mac` - apple macbook pro, 1st gen (macos w/darwin-nixos)
+* `hockeypuck` - mac mini 2024  (macos w/darwin-nixos)
 
 #### how to read
 

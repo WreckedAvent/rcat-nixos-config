@@ -1,6 +1,7 @@
 {
   pkgs,
   config,
+  lib,
   ...
 }: {
   imports = [
@@ -11,8 +12,8 @@
     ../terminal.nix
   ];
 
-  home.username = "rileycat";
-  home.homeDirectory = "/home/rileycat";
+  home.username = lib.mkDefault "rileycat";
+  home.homeDirectory = lib.mkDefault "/home/rileycat";
 
   rcat = {
     coding = {
@@ -23,7 +24,7 @@
 
     environment.nnn = false;
 
-    productivity.libreOffice = true;
+    productivity.libreOffice = pkgs.stdenv.isLinux;
 
     terminal.zsh = true;
   };

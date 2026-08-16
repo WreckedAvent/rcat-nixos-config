@@ -3,6 +3,7 @@
   withSystem,
   lib,
   config,
+  self,
   ...
 }: {
   perSystem = {system, ...}: {
@@ -22,7 +23,7 @@
   };
 
   # use configured nixpkgs
-  flake.nixosModules.nixpkgs = {config, ...}: {
+  flake.genericModules.nixpkgs = {config, ...}: {
     nixpkgs.pkgs = withSystem config.nixpkgs.hostPlatform.system (
       {pkgs, ...}:
         pkgs

@@ -1,20 +1,29 @@
 {lib, ...}: let
   inherit (lib) mkOption types;
 in {
+  options.flake.genericModules = mkOption {
+    type = types.lazyAttrsOf types.deferredModule;
+    default = [];
+  };
+
   options.rcat.flake = {
     homeDefaults = mkOption {
-      description = ''
-        List of nixos modules from flake inputs that should generally be used by hosts in this configuration.
-        Styles, flake-wide nixos modules, nixpkgs configurations, obligatory user definitions, etc.
-      '';
+      description = "List of home managers conventional to use by home configurations.";
       example = "[ inputs.stylix.nixosModules.default ]";
       type = types.listOf types.deferredModule;
       default = [];
     };
 
     nixosDefaults = mkOption {
-      description = "List of home modules from flake inputs that should generally be used by users in this configuration";
-      example = "[ inputs.cattpuciin.homeModules.default ]";
+      description = "List of nixos modules conventional to use by nixos configurations.";
+      example = "[ inputs.cattpucin.homeModules.default ]";
+      type = types.listOf types.deferredModule;
+      default = [];
+    };
+
+    darwinDefaults = mkOption {
+      description = "List of darwin modules conventional to use by darwin configurations.";
+      example = "[  ]";
       type = types.listOf types.deferredModule;
       default = [];
     };

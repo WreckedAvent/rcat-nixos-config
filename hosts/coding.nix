@@ -7,10 +7,6 @@
   cfg = config.rcat.coding;
   inherit (lib) mkIf mkEnableOption mkDefault;
 in {
-  imports = [
-    ./fonts.nix
-  ];
-
   options.rcat.coding = {
     lsp = mkEnableOption "all relevant LSP servers";
   };

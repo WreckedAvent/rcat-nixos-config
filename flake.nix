@@ -73,7 +73,9 @@
 
       rcat.flake = {
         nixosDefaults = [
-          self.nixosModules.nixpkgs
+          self.genericModules.nixpkgs
+          self.genericModules.fonts
+          self.nixosModules.fonts
           self.nixosModules."rileycat"
 
           catppuccin.nixosModules.default
@@ -95,6 +97,12 @@
           })
         ];
 
+        darwinDefaults = [
+          self.genericModules.nixpkgs
+          self.genericModules.fonts
+          self.darwinModules."rileycat"
+        ];
+
         homeDefaults = [
           catppuccin.homeModules.default
           nix-index-database.homeModules.default
@@ -107,6 +115,7 @@
       };
 
       imports = [
+        ./fonts.nix
         ./rcat.nix
         ./nixpkgs.nix
 

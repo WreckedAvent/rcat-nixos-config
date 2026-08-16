@@ -1,5 +1,6 @@
 {pkgs, ...}: {
   imports = [
+    ../coding.nix
     ../nix.nix
     ../utils.nix
   ];
