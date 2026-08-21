@@ -24,7 +24,7 @@
 
     environment.nnn = false;
 
-    productivity.libreOffice = pkgs.stdenv.isLinux;
+    productivity.libreOffice = pkgs.stdenv.hostPlatform.isLinux;
 
     terminal.zsh = true;
   };

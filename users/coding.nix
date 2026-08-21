@@ -25,7 +25,7 @@ in {
 
           indent-guides = {
             character =
-              if pkgs.stdenv.isLinux
+              if pkgs.stdenv.hostPlatform.isLinux
               then "⸽"
               else "╎";
             render = true;
