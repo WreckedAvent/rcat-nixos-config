@@ -21,7 +21,7 @@ in {
         hunspellDicts.en_US
 
         # productivity
-        libreoffice-qt-fresh
+        libreoffice-qt-stable
       ];
   };
 }
