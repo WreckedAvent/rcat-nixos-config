@@ -29,6 +29,7 @@
     gaming = {
       launchers.steam = true;
       launchers.smm = true;
+      launchers.heroic = true;
       hardware.amd = true;
 
       utils = {

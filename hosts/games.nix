@@ -4,7 +4,7 @@
   ...
 }: let
   opts = config.rcat.games;
-  inherit (lib) mkEnableOption;
+  inherit (lib) mkEnableOption mkDefault;
 in {
   imports = [
     ./gaming.nix
@@ -18,13 +18,14 @@ in {
 
   config = {
     rcat.gaming.launchers = {
-      prism = opts.minecraft-prism;
-      heroic = opts.stellaris-heroic;
+      prism = mkDefault opts.minecraft-prism;
+      heroic = mkDefault opts.stellaris-heroic;
     };
 
     rcat.networking = {
-      openPorts.minecraft = opts.minecraft-prism;
-      openPorts.stellaris = opts.stellaris-heroic;
+      openPorts.minecraft = mkDefault opts.minecraft-prism;
+      openPorts.stellaris = mkDefault opts.stellaris-heroic;
+      openPorts.satisfactory = mkDefault true;
     };
   };
 }
