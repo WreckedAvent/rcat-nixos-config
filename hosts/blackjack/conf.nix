@@ -13,6 +13,7 @@
 
     ../kde.nix
   ];
+  
   services.printing.enable = true;
 
   catppuccin.enable = true;
