@@ -53,6 +53,8 @@
     openFirewall = true;
   };
 
+  services.envfs.enable = true;
+
   environment.systemPackages = with pkgs; [
     element-desktop
     qbittorrent
