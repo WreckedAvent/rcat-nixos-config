@@ -16,7 +16,7 @@ in {
     environment.systemPackages = mkIf cfg.lsp (with pkgs; [
       gopls
       marksman
-      omnisharp-roslyn
+      # omnisharp-roslyn
       rust-analyzer
       ty
       typescript-language-server
