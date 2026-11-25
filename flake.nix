@@ -76,6 +76,7 @@
           self.genericModules.nixpkgs
           self.genericModules.fonts
           self.nixosModules.fonts
+          self.nixosModules.customPackages
           self.nixosModules."rileycat"
 
           catppuccin.nixosModules.default
@@ -125,6 +126,8 @@
         ./hosts/blackjack
         ./hosts/rileyrose
         ./hosts/hockeypuck
+
+        ./pkgs
       ];
     };
 }

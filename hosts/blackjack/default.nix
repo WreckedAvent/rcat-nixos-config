@@ -1,7 +1,6 @@
 {
   inputs,
   config,
-  self,
   ...
 }: {
   rcat.flake.unfreePkgs = [
@@ -16,14 +15,6 @@
         [
           ./conf.nix
           ./hardware.nix
-          
-          ({ pkgs, ... }:
-          {
-            environment.systemPackages = [
-              (pkgs.callPackage "${self}/pkgs/omnisharp-roslyn/package.nix" { })
-            ];
-          })
-
         ]
         ++ config.rcat.flake.nixosDefaults;
     };

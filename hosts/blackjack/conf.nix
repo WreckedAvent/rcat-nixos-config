@@ -13,13 +13,15 @@
 
     ../kde.nix
   ];
-  
+
   services.printing.enable = true;
 
   catppuccin.enable = true;
   catppuccin.autoEnable = true;
 
   rcat = {
+    ai.enable = true;
+
     coding.lsp = true;
 
     boot = {
@@ -58,6 +60,7 @@
   environment.systemPackages = with pkgs; [
     element-desktop
     qbittorrent
+    telegram-desktop
   ];
 
   # the version this file was generated with

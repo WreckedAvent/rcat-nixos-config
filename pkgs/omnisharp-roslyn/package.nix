@@ -42,7 +42,6 @@ let
       "-property:InformationalVersion=${safe-version}"
       "-property:RuntimeFrameworkVersion=${runtime_8_0.version}"
       "-property:RollForward=LatestMajor"
-      "-feature:FileBasedProgram"
     ];
 
     postPatch = ''

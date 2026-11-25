@@ -62,6 +62,6 @@ in {
       allowedUDPPortRanges = open-ports;
     };
 
-    networking.nameservers = [ "1.1.1.1" "192.168.1.1" ];
+    networking.nameservers = ["1.1.1.1" "192.168.1.1"];
   };
 }
