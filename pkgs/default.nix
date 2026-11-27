@@ -1,5 +1,5 @@
 {self, ...}: let
-  getPkg = name: "${self}/pkgs/${name}/package.nix";
+  toPath = name: "${self}/pkgs/${name}/package.nix";
 in {
   flake.nixosModules.customPackages = {
     pkgs,
@@ -18,7 +18,7 @@ in {
       else false;
   in {
     environment.systemPackages = mkIf ai [
-      (callPackage (getPkg "omnisharp-roslyn"))
+      ("omnisharp-roslyn" |> toPath |> callPackage)
     ];
   };
 }

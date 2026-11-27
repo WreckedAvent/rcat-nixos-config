@@ -8,7 +8,7 @@
 }:
 
 let
-  inherit (dotnetCorePackages) sdk_11_0 sdk_10_0 runtime_8_0;
+  inherit (dotnetCorePackages) sdk_11_0 sdk_10_0 runtime_11_0;
 in
 let
   finalPackage = buildDotnetModule rec {
@@ -40,7 +40,7 @@ let
       "-property:AssemblyVersion=${safe-version}.0"
       "-property:FileVersion=${safe-version}.0"
       "-property:InformationalVersion=${safe-version}"
-      "-property:RuntimeFrameworkVersion=${runtime_8_0.version}"
+      "-property:RuntimeFrameworkVersion=${runtime_11_0.version}"
       "-property:RollForward=LatestMajor"
     ];
 
